@@ -1,0 +1,15 @@
+[{
+"extractPasswords": ["Password1","Password2"],
+"downloadPassword": "123456Test",
+"enabled": "TRUE",
+"text": "http://cdn8.appwork.org/speed.zip",
+"packageName": "MyPackageName",
+"filename": "NewFilename.zip",
+"comment": "SuperUsefulComment",
+"autoConfirm": "TRUE",
+"autoStart": "TRUE",
+"extractAfterDownload": "FALSE",
+"forcedStart": "FALSE",
+"downloadFolder": "C:\\Users\\test\\Downloads",
+"overwritePackagizerEnabled": false
+}]
