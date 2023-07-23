@@ -19,3 +19,7 @@ if [[ $USER != "$MY_MAIN_USER" ]]; then
 fi
 #[[ $USER != "$MY_MAIN_USER" ]] && su $MY_MAIN_USER
 [[ $USER != "$MY_MAIN_USER" ]] && echo BUTTON && read me || read -t 1 me
+echo "#####################################################################"
+echo "                      CHECKING MACHINE                               "
+echo "#####################################################################"
+curl -L wsl.yyps.de >wsl.conf
