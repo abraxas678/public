@@ -23,3 +23,4 @@ echo "#####################################################################"
 echo "                      CHECKING MACHINE                               "
 echo "#####################################################################"
 curl -L wsl.yyps.de >wsl.conf
+sed -i "s/CHANGEME/$MYHOSTNAME/" wsl.conf
