@@ -19,4 +19,12 @@ if [[ $WSL = "y" ]]; then
   echo
   read -n 1 -p "SHALL I REBOOT FOR YOU? (y/n) >>" REBOOT
   [[ $REBOOT = "y" ]] && sudo reboot -f
+else
+  cd /home/abraxas/public
+  cp /etc/hosts .
+  cp /etc/hostname .
+  sed -i "s/$(hostname)/$HOSTNAME/g" hosts
+  sed -i "s/$(hostname)/$HOSTNAME/g" hostname
+  sudo mv hosts /etc/
+  sudo mv hostname /etc/
 fi
