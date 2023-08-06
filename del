@@ -1,0 +1,17 @@
+figlet
+python3-pip
+fish
+nano
+ccrypt
+exa
+curl
+curl https://rclone.org/install.sh | sudo bash
+xclip
+#keepassxc
+taskwarrior
+docker.io
+docker-compose
+#firefox
+unzip
+wormhole
+#git-annex

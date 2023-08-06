@@ -1,0 +1,14 @@
+curl
+git
+nano
+unzip
+wormhole
+ccrypt
+exa
+python3-pip
+xclip
+keepassxc
+taskwarrior
+docker.io
+docker-compose
+mutagen
