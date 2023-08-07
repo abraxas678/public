@@ -1,6 +1,6 @@
 #!/bin/bash
 USER=$(whoami)
-MY_MAIN_USER=abraxas
+read -p "target user name: >> " MY_MAIN_USER
 echo "#####################################################################"
 echo "                      CHECKING USER DETAILS                          "
 echo "#####################################################################"
