@@ -16,4 +16,5 @@ then
 fi
 echo
 read -p "KEYBASE USER: >> " MYUSER
+cd $HOME
 git clone keybase://private/$MYUSER/server_setup
