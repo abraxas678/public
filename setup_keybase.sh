@@ -4,7 +4,7 @@ then
     sudo apt-get install -y curl
 fi
 export XDG_RUNTIME_DIR=""
-curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
+[[ ! -f keybase_amd64.deb ]] && curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
 sudo apt update
 sudo apt install ./keybase_amd64.deb -y
 export XDG_RUNTIME_DIR=""
