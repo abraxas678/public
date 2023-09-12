@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo ls ~ >/dev/null 2>/dev/null
 if ! command -v curl &> /dev/null
 then
     sudo apt-get install -y curl
