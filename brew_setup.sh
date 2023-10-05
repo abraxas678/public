@@ -3,6 +3,7 @@ echo "#####################################################################"
 echo "                          INSTALL BREW"
 echo "#####################################################################"
 echo; sleep 2
+export PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
 countdown 1
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
@@ -17,3 +18,5 @@ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
 
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/abraxas/.profile
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+export PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
