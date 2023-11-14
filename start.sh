@@ -25,6 +25,12 @@ sudo chown $USER: -R /home/mnt/snas
 sudo chown $USER: -R /home/mnt/snas
 sudo chmod 777 /home/mnt/snas -R
 
+x=0
+while [[ $x = "0" ]]; do
+  sleep 1
+  [[ -f /home/mnt/snas/setup/MOUNT_CHECK ]] && x=1 
+done
+
 # Install apps using apt-get
 while read -r app; do
   if ! command -v $app &> /dev/null; then
