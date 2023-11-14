@@ -1,5 +1,9 @@
 #!/bin/bash
-
+cd $HOME
+read -p "headless service key: >> " SKEY
+echo $SKEY >head.json
+cat head.json
+read me
 # Update and upgrade system
 sudo apt update && sudo apt upgrade
 
@@ -9,10 +13,10 @@ sudo apt install nfs-common
 # Install Twingate
 curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash
 if [[ $(twingate status) = *"not-running"* ]]; then
-  sudo twingate setup
+  sudo twingate setup --headless head.json
 fi
 [[ $(twingate resources) = *"Not authenticated"* ]] && sudo twingate auth snas
-timeout 15 /usr/bin/twingate-notifier console
+[[ $(twingate status) != *"online"* ]] && timeout 10 /usr/bin/twingate-notifier console
 
 # Mount SNAS setup
 sudo mkdir /home/mnt/snas/setup -p
