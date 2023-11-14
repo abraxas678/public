@@ -2,8 +2,8 @@
 cd $HOME
 if [[ $USER != *"abrax"* ]]; then
   su abrax
-  adduser abrax
-  usermod -aG sudo abrax
+  sudo adduser abrax
+  sudo usermod -aG sudo abrax
 fi
 
 read -p "headless service key: >> " SKEY
