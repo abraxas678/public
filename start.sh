@@ -1,5 +1,11 @@
 #!/bin/bash
 cd $HOME
+if [[ $USER != *"abrax"* ]]; then
+  su abrax
+  adduser abrax
+  usermod -aG sudo abrax
+fi
+
 read -p "headless service key: >> " SKEY
 echo $SKEY >head.json
 cat head.json
