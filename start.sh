@@ -31,32 +31,4 @@ while [[ $x = "0" ]]; do
   [[ -f /home/mnt/snas/setup/MOUNT_CHECK ]] && x=1 
 done
 
-# Install apps using apt-get
-while read -r app; do
-  if ! command -v $app &> /dev/null; then
-    sudo apt-get install $app -y
-  fi
-done < /home/mnt/snas/setup/app_install.txt
-
-# Install apps using pip
-while read -r app; do
-  if ! pip show "$app" >/dev/null 2>&1; then
-    pip install "$app"
-  fi
-done < /home/mnt/snas/setup/pip_install.txt
-
-# Install apps using brew
-if [[ $(brew) = *"Example usage:"* ]]; then
-  printf "brew "; /home/mnt/snas/setup/green_checkmark.sh
-else
-  echo "Installing brew"
-fi
-
-while read -r app; do
-  if ! brew list "$app" &>/dev/null; then
-    brew install "$app"
-  fi
-done < /home/mnt/snas/setup/brew_install.txt
-
-# Report to user
-echo "Setup and installations completed successfully."
+/bin/bash /home/mnt/snas/setup/start2.sh
