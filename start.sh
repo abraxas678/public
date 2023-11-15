@@ -30,6 +30,7 @@ sudo chown $USER: -R /home/mnt/snas
 echo
 echo mount nfs version 3
 echo; sleep 3
+[[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]] && sudo mount -t nfs -o vers=3 192.168.178.35:/volume2/sync /home/mnt/snas/sync
 [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]] && sudo mount -t nfs -o vers=3 192.168.178.35:/volume1/setup /home/mnt/snas/setup
 sudo chown $USER: -R /home/mnt/snas
 sudo chmod 777 /home/mnt/snas -R
