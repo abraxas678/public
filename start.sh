@@ -28,7 +28,8 @@ fi
 # Mount SNAS setup
 mkdir -p /home/mnt/snas/sync
 sudo mkdir /home/mnt/snas/setup -p
-sudo chown $USER: -R /home/mnt/snas
+[[ ! -f /home/mnt/snas/sync/MOUNT_CHECK ]] && sudo chown $USER: -R /home/mnt/snas/sync
+[[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]] && sudo chown $USER: -R /home/mnt/snas/setup
 sudo chmod 777 /home/mnt/snas -R
 echo
 echo mount nfs version 3
