@@ -30,7 +30,8 @@ mkdir -p /home/mnt/snas/sync
 sudo mkdir /home/mnt/snas/setup -p
 [[ ! -f /home/mnt/snas/sync/MOUNT_CHECK ]] && sudo chown $USER: -R /home/mnt/snas/sync
 [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]] && sudo chown $USER: -R /home/mnt/snas/setup
-sudo chmod 777 /home/mnt/snas -R
+[[ ! -f /home/mnt/snas/sync/MOUNT_CHECK ]] && sudo chmod 777 /home/mnt/snas/sync -R
+[[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]] && sudo chmod 777 /home/mnt/snas/setup -R
 echo
 echo mount nfs version 3
 echo; sleep 3
