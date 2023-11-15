@@ -8,6 +8,7 @@ fi
 
 read -p "headless service key: >> " SKEY
 echo $SKEY >head.json
+echo
 cat head.json
 read me
 # Update and upgrade system
