@@ -42,4 +42,4 @@ while [[ $x = "0" ]]; do
   [[ -f /home/mnt/snas/setup/MOUNT_CHECK ]] && x=1 
 done
 
-/bin/bash /home/mnt/snas/setup/start2.sh
+source /home/mnt/snas/setup/start2.sh
