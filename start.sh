@@ -10,12 +10,12 @@ read -p "headless service key: >> " SKEY
 echo $SKEY >head.json
 echo
 cat head.json
-read me
+read -t 10 me
 # Update and upgrade system
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
 
 # Install nfs-common
-sudo apt install nfs-common
+sudo apt install nfs-common -y
 
 # Install Twingate
 curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash
@@ -34,7 +34,7 @@ sudo mkdir /home/mnt/snas/setup -p
 [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]] && sudo chmod 777 /home/mnt/snas/setup -R
 echo
 echo mount nfs version 3
-echo; sleep 3
+echo; sleep 1
 [[ ! -f /home/mnt/snas/sync/MOUNT_CHECK ]] && sudo mount -t nfs -o vers=3 192.168.178.35:/volume2/sync /home/mnt/snas/sync
 [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]] && sudo mount -t nfs -o vers=3 192.168.178.35:/volume1/setup /home/mnt/snas/setup
 sudo chown $USER: -R /home/mnt/snas/setup
