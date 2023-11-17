@@ -4,15 +4,27 @@ if [[ $USER != *"abrax"* ]]; then
   su abrax
   sudo adduser abrax
   sudo usermod -aG sudo abrax
+  su abrax
 fi
 
+if [[ ! -f ~/head.json ]]; then
 read -p "headless service key: >> " SKEY
 echo $SKEY >head.json
 echo
 cat head.json
 read -t 10 me
+fi
 # Update and upgrade system
-sudo apt update && sudo apt upgrade -y
+ts=$(date +%s)
+if [[ -f ~/last_apt_update.txt ]]; then
+  DIFF=$(($ts-$(cat ~/last_apt_update.txt)))
+  echo DIFF $DIFF
+  sleep 5
+  [[ $DIFF -gt "600" ]] && sudo apt update && sudo apt upgrade -y
+else
+  sudo apt update && sudo apt upgrade -y
+fi
+echo $ts >~/last_apt_update.txt
 
 # Install nfs-common
 sudo apt install nfs-common -y
