@@ -30,7 +30,9 @@ echo $ts >~/last_apt_update.txt
 sudo apt install nfs-common -y
 
 # Install Twingate
-curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash
+if [[ "$(command twingate 2>&1)" = *"command not found"* ]]; then
+  curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash
+fi
 if [[ $(twingate status) = *"not-running"* ]]; then
   sudo twingate setup --headless head.json
 fi
