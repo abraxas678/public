@@ -26,6 +26,8 @@ else
 fi
 echo $ts >~/last_apt_update.txt
 
+sudo apt install ubuntu-desktop xrdp -y
+
 # Install nfs-common
 sudo apt install nfs-common -y
 
