@@ -1,5 +1,10 @@
 #!/bin/bash
 cd $HOME
+echo
+read -p "SNAS-IP: >> " SNASIP
+echo "SNASIP: $SNASIP"
+sleep 2
+echo
 if [[ $USER != *"abrax"* ]]; then
   su abrax
   sudo adduser abrax
@@ -55,9 +60,9 @@ sudo mkdir /home/mnt/snas/downloads2 -p
 echo
 echo mount nfs version 3
 echo; sleep 1
-[[ ! -f /home/mnt/snas/sync/MOUNT_CHECK ]] && sudo mount -t nfs -o vers=3 192.168.178.35:/volume2/sync /home/mnt/snas/sync
-[[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]] && sudo mount -t nfs -o vers=3 192.168.178.35:/volume1/setup /home/mnt/snas/setup
-[[ ! -f /home/mnt/snas/downloads2/MOUNT_CHECK ]] && sudo mount -t nfs -o vers=3 192.168.178.35:/volume1/setup /home/mnt/snas/downloads2
+[[ ! -f /home/mnt/snas/sync/MOUNT_CHECK ]] && sudo mount -t nfs -o vers=3 $SNASIP:/volume2/sync /home/mnt/snas/sync
+[[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]] && sudo mount -t nfs -o vers=3 $SNASIP:/volume1/setup /home/mnt/snas/setup
+[[ ! -f /home/mnt/snas/downloads2/MOUNT_CHECK ]] && sudo mount -t nfs -o vers=3 $SNASIP:/volume1/setup /home/mnt/snas/downloads2
 sudo chown $USER: -R /home/mnt/snas/setup
 sudo chmod 777 /home/mnt/snas/setup -R
 
