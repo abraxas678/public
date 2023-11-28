@@ -46,7 +46,7 @@ fi
 [[ $(twingate resources) = *"Not authenticated"* ]] && sudo twingate auth snas
 [[ $(twingate status) != *"online"* ]] && timeout 10 /usr/bin/twingate-notifier console
 
-# Mount SNAS setup
+# Mount SNAS setup 
 sudo mkdir -p /home/mnt/snas/sync
 sudo mkdir /home/mnt/snas/setup -p
 sudo mkdir /home/mnt/snas/downloads2 -p
