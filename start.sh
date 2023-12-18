@@ -2,6 +2,7 @@
 
 # Change directory to home
 cd $HOME
+which tmux >/dev/null 2>&1; [[ "$?" != "0" ]] && sudo apt update && sudo apt install tmux -y
 
 # Get SNAS-IP from user
 read -p "SNAS-IP: >> " SNASIP
