@@ -2,9 +2,7 @@
 MYPWD=$PWD
 # Change directory to home
 cd $HOME
-which tmux >/dev/null 2>&1; [[ "$?" != "0" ]] && sudo apt update && sudo apt install tmux tmuxinator -y
-tmuxinator start -p $MYPWD/setup.yml
-exit
+
 # Get SNAS-IP from user
 COUNT=${#SNAS_IP}
 #echo COUNT $COUNT
