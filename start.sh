@@ -5,8 +5,10 @@ cd $HOME
 which tmux >/dev/null 2>&1; [[ "$?" != "0" ]] && sudo apt update && sudo apt install tmux -y
 
 # Get SNAS-IP from user
-read -p "SNAS-IP: >> " SNASIP
-echo "SNASIP: $SNASIP"
+COUNT=${#SNAS_IP}
+#echo COUNT $COUNT
+[[ "$COUNT" = "0" ]] && read -p "SNAS-IP: >> " SNAS_IP
+echo "SNAS_IP: $SNAS_IP"
 sleep 2
 
 # Check if user is not abrax, if not then switch to abrax
@@ -79,7 +81,8 @@ done
 # Mount directories if not already mounted
 for dir in sync setup downloads2; do
   if [[ ! -f /home/mnt/snas/$dir/MOUNT_CHECK ]]; then
-    sudo mount -t nfs -o vers=3 $SNASIP:/volume2/$dir /home/mnt/snas/$dir
+    sudo mount -t nfs -o vers=3 $SNAS_IP:/volume2/$dir /home/mnt/snas/$dir
+    sudo mount -t nfs -o vers=3 $SNAS_IP:/volume1/$dir /home/mnt/snas/$dir
   fi
 done
 

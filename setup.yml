@@ -1,0 +1,68 @@
+# /home/abrax/.config/tmuxinator/setup.yml
+
+name: setup
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Note that the pre and post options have been deprecated and will be replaced by
+# project hooks.
+
+# Project hooks
+
+# Runs on project start, always
+#on_project_start: source ~/.p10kmini.zsh
+#on_project_start: source ~/.p10kmini.zsh
+on_project_start: clear
+
+# Run on project start, the first time
+# on_project_first_start: command
+
+# Run on project start, after the first time
+#on_project_restart: source ~/.p10kmini.zsh
+
+# Run on project exit ( detaching from tmux session )
+# on_project_exit: command
+
+# Run on project stop
+# on_project_stop: command
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+#pre_window: source ~/.p10kmini.zsh
+#pre_window: source 
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+#tmux_command: source ~/.p10kmini.zsh
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: editor
+
+# Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
+startup_pane: 1
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+          - shell_command:
+            - clear
+            - tmux resize-pane -t 0 -y 2
+            - source ~/.p10kmini.zsh
+#            - tmux send-keys -t 0 'START' C-m
+          - shell_command:
+            - clear
+#          - shell_command:
+#            - clear
+            - tmux send-keys -t 0 'clear; echo -e "\033[1;34mSETUP NEW MACHINE\033[0m"' C-m
+            - tmux send-keys -t 0 'start.sh'
+            - tmux send-keys -t 1 'clear' C-m
+
+#            - zsh --rcfile $HOME/.zshrcmini
