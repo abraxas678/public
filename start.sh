@@ -1,4 +1,6 @@
 #!/bin/bash
+echo v0.1
+sleep 1
 MYPWD=$PWD
 # Change directory to home
 cd $HOME
