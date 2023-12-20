@@ -55,6 +55,9 @@ windows:
           - shell_command:
             - clear
             - source ~/.p10kmini.zsh
+          - shell_command:
+            - clear
+            - source ~/.p10kmini.zsh
 #            - tmux send-keys -t 0 'START' C-m
           - shell_command:
             - clear
@@ -63,7 +66,7 @@ windows:
             - tmux send-keys -t 0 'clear; echo -e "\033[1;34mSETUP NEW MACHINE\033[0m"' C-m
             - tmux send-keys -t 0 'start.sh'
             - tmux send-keys -t 1 'clear' C-m
-            - sleep 2
-            - $HOME/tmp/start_TMUX.sh
+#            - sleep 2
+#            - $HOME/tmp/start_TMUX.sh
 
 #            - zsh --rcfile $HOME/.zshrcmini
