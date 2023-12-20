@@ -66,7 +66,8 @@ windows:
             - tmux send-keys -t 0 'clear; echo -e "\033[1;34mSETUP NEW MACHINE\033[0m"' C-m
             - tmux send-keys -t 0 'start.sh'
             - tmux send-keys -t 1 'clear' C-m
-#            - sleep 2
+            - sleep 2
+            - echo STATE2 >~/tmp/setup_status.txt
 #            - $HOME/tmp/start_TMUX.sh
 
 #            - zsh --rcfile $HOME/.zshrcmini

@@ -1,5 +1,14 @@
 #!/bin/bash
-clear
+#            - tmux resize-pane -t 0 -y 2
+#tmux send-keys -t 0 'clear; echo -e "\033[1;34mSETUP NEW MACHINE\033[0m"' C-m
+#tmux send-keys -t 0 'start.sh'
+#            - tmux send-keys -t 1 'clear' C-m
+
+tmux send-keys -t 1 'clear' C-m
+tmux send-keys -t 0 'clear' C-m
+tmux send-keys -t 0 'clear; echo -e "\033[1;34mSETUP NEW MACHINE\033[0m"' C-m
+tmux send-keys -t 0 'start_TMUX.sh'
+
 MYPWD=$PWD
 # Change directory to home
 cd $HOME
