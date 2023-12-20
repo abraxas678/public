@@ -68,6 +68,7 @@ windows:
             - tmux send-keys -t 1 'clear' C-m
             - sleep 2
             - echo STATE2 >~/tmp/setup_status.txt
-#            - $HOME/tmp/start_TMUX.sh
+            - sleep 2
+            - $HOME/tmp/start_TMUX.sh
 
 #            - zsh --rcfile $HOME/.zshrcmini
