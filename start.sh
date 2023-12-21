@@ -3,6 +3,7 @@ clear
 echo v0.1
 sleep 1
 
+mkdir ~/tmp -p
 MYPWD=$PWD
 cd $HOME
 
