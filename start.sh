@@ -16,5 +16,6 @@ curl -s -L https://raw.githubusercontent.com/abraxas678/public/master/.p10kmini.
 curl -s -L https://raw.githubusercontent.com/abraxas678/public/master/setup.yml -o ~/tmp/setup.yml
 
 echo "STATE1" >~/tmp/setup_status.txt
-tmuxinator start -p $HOME/tmp/setup.yml
+#tmuxinator start -p $HOME/tmp/setup.yml
+~/tmp/start_TMUX.sh
 exit
