@@ -21,7 +21,9 @@ git config --global user.name "abraxas678"
 #echo "STATE1" >~/tmp/setup_status.txt
 #tmuxinator start -p $HOME/tmp/setup.yml
 #~/tmp/start_TMUX.sh
-exit
+
+
+#exit
 
 
 #!/bin/bash
