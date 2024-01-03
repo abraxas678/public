@@ -104,7 +104,8 @@ while [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; do
   sleep 1
 done
 
-
+curl -L https://raw.githubusercontent.com/abraxas678/public/master/mount.sh -o mount.sh
+source mount.sh
 
 # Source start2.sh script
 source /home/mnt/snas/setup/start2.sh
