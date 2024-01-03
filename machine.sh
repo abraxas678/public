@@ -1,5 +1,6 @@
 #!/bin/bash
 cd $HOME
+sudo apt install -y wget
 read -p "new hostname: >> " HOSTNAME
 HOSTNAME_OLD=$(hostname)
 sudo hostnamectl set-hostname "$HOSTNAME"
