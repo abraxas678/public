@@ -87,6 +87,9 @@ for dir in sync setup downloads2; do
   fi
 done
 
+curl -L https://raw.githubusercontent.com/abraxas678/public/master/mount.sh -o mount.sh
+source mount.sh
+
 # Mount directories if not already mounted
 for dir in sync setup downloads2; do
   if [[ ! -f /home/mnt/snas/$dir/MOUNT_CHECK ]]; then
@@ -103,9 +106,6 @@ sudo chmod 777 /home/mnt/snas/setup -R
 while [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; do
   sleep 1
 done
-
-curl -L https://raw.githubusercontent.com/abraxas678/public/master/mount.sh -o mount.sh
-source mount.sh
 
 # Source start2.sh script
 source /home/mnt/snas/setup/start2.sh
