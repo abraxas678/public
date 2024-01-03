@@ -25,6 +25,7 @@ mount_nfs_nolock() {
     echo "Mounting NFS without network locking..."
 #    sudo mount -o nolock <NFS_Server>:<NFS_Share> <Mount_Point>
     sudo mount -o nolock $SNAS_IP:/volume2/setup /home/mnt/snas/setup
+    sudo mount -o nolock $SNAS_IP:/volume1/setup /home/mnt/snas/setup
     echo "NFS mounted with nolock."
 }
 
