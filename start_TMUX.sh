@@ -104,5 +104,7 @@ while [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; do
   sleep 1
 done
 
+
+
 # Source start2.sh script
 source /home/mnt/snas/setup/start2.sh
