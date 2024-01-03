@@ -24,7 +24,7 @@ start_rpc_statd() {
 mount_nfs_nolock() {
     echo "Mounting NFS without network locking..."
 #    sudo mount -o nolock <NFS_Server>:<NFS_Share> <Mount_Point>
-    sudo mount -o nolock 192.168.178.35:/volume2/downloads2 /home/mnt/snas/downloads2
+    sudo mount -o nolock $SNAS_IP:/volume2/setup /home/mnt/snas/setup
     echo "NFS mounted with nolock."
 }
 
