@@ -85,22 +85,22 @@ sudo apt install nfs-common -y
 
 # Install Twingate if not already installed
 if [[ "$(command twingate 2>&1)" = *"command not found"* ]]; then
-  curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash
+  echo; #curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash
 fi
 
 # Setup Twingate if not running
 if [[ $(twingate status) = *"not-running"* ]]; then
-  sudo twingate setup --headless head.json
+  echo; #sudo twingate setup --headless head.json
 fi
 
 # Authenticate Twingate if not authenticated
 if [[ $(twingate resources) = *"Not authenticated"* ]]; then
-  sudo twingate auth snas
+  echo; #sudo twingate auth snas
 fi
 
 # Check Twingate status, if not online then start it
 if [[ $(twingate status) != *"online"* ]]; then
-  timeout 10 /usr/bin/twingate-notifier console
+  echo; #timeout 10 /usr/bin/twingate-notifier console
 fi
 
 # Create directories for SNAS setup
