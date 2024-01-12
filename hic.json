@@ -1,0 +1,46 @@
+{
+  "version": "2.0",
+  "id": "99d9c271-20bf-4d56-8dbd-d4a4edb9f65d",
+  "title": "Empty config - Editing",
+  "featured": [],
+  "categories": [
+    {
+      "title": "SPACE & FILES",
+      "links": [
+        {
+          "name": "Internxt",
+          "link": "https://send.internxt.com/",
+          "tags": "send"
+        },
+        {
+          "name": "send",
+          "link": "https://github.com/timvisee/send-instances/#instances",
+          "tags": "send selfhost"
+        },
+        {
+          "name": "onionshare",
+          "link": "https://onionshare.org/",
+          "tags": "send tor"
+        },
+        {
+          "name": "privacy tools",
+          "link": "https://www.privacytools.io/file-sharing-sync"
+        }
+      ]
+    },
+    {
+      "title": "mail, calendar & co",
+      "links": [
+        {
+          "name": "CasaOS_wsl_debian",
+          "link": "http://172.20.137.101/#/"
+        },
+        {
+          "name": "CasaOS_ionos0",
+          "link": "http://87.106.153.248:82/#/"
+        }
+      ]
+    }
+  ],
+  "metadata": {}
+}
