@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
-echo v0.5
-sleep 1
+echo v0.6
+read -t 5 me
 
 mkdir ~/tmp -p
 MYPWD=$PWD
@@ -43,6 +43,10 @@ git config --global user.name "abraxas678"
 #MYPWD=$PWD
 # Change directory to home
 #cd $HOME
+
+TASK="tailscale"
+read -t 5 -p "starting: $TASK" me; echo
+curl -fsSL https://tailscale.com/install.sh | sh
 
 # Get SNAS-IP from user
 TASK="SNAS_IP set?"
