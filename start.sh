@@ -47,6 +47,7 @@ git config --global user.name "abraxas678"
 TASK="tailscale"
 read -t 5 -p "starting: $TASK" me; echo
 curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up --ssh
 
 # Get SNAS-IP from user
 TASK="SNAS_IP set?"
