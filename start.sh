@@ -7,6 +7,8 @@ mkdir ~/tmp -p
 MYPWD=$PWD
 cd $HOME/tmp
 
+TASK="install basics"
+read -t 5 -p "starting: $TASK" me
 sudo apt install curl git wget -y
 git config --global user.email "abraxas678@gmail.com"
 git config --global user.name "abraxas678"
@@ -43,12 +45,16 @@ git config --global user.name "abraxas678"
 #cd $HOME
 
 # Get SNAS-IP from user
+TASK="SNAS_IP set?"
+read -t 5 -p "starting: $TASK" me
+
 COUNT=${#SNAS_IP}
 #echo COUNT $COUNT
 [[ "$COUNT" = "0" ]] && read -p "SNAS-IP: >> " SNAS_IP
 echo "SNAS_IP: $SNAS_IP"
 
-sleep 2
+TASK="USER = abrax?"
+read -t 5 -p "starting: $TASK" me
 
 # Check if user is not abrax, if not then switch to abrax
 if [[ $USER != *"abrax"* ]]; then
@@ -67,6 +73,9 @@ fi
 #fi
 
 # Update and upgrade system
+TASK="apt update && upgrade"
+read -t 5 -p "starting: $TASK" me
+
 ts=$(date +%s)
 if [[ -f ~/last_apt_update.txt ]]; then
   DIFF=$(($ts-$(cat ~/last_apt_update.txt)))
@@ -79,7 +88,10 @@ fi
 echo $ts >~/last_apt_update.txt
 
 # Install ubuntu-desktop and xrdp
-sudo apt install ubuntu-desktop xrdp -y
+#sudo apt install ubuntu-desktop xrdp -y
+
+TASK="nfs-common"
+read -t 5 -p "starting: $TASK" me
 
 # Install nfs-common
 sudo apt install nfs-common -y
@@ -104,6 +116,10 @@ sudo apt install nfs-common -y
 #  timeout 10 /usr/bin/twingate-notifier console
 #fi
 
+TASK="MOUNT SNAS"
+read -t 5 -p "starting: $TASK" me
+
+
 # Create directories for SNAS setup
 #sudo mkdir -p /home/mnt/snas/sync
 sudo mkdir -p /home/mnt/snas/setup
@@ -118,8 +134,18 @@ for dir in setup; do
   fi
 done
 
+TASK="get mount.sh"
+read -t 5 -p "starting: $TASK" me
+
 curl -L https://raw.githubusercontent.com/abraxas678/public/master/mount.sh -o mount.sh
+
+TASK="start mount.sh"
+read -t 5 -p "starting: $TASK" me
+
 source mount.sh
+
+TASK="mount dirs"
+read -t 5 -p "starting: $TASK" me
 
 # Mount directories if not already mounted
 #for dir in sync setup downloads2; do
@@ -133,6 +159,9 @@ done
 # Change ownership and permissions for setup directory
 #sudo chown $USER: -R /home/mnt/snas/setup
 #sudo chmod 777 /home/mnt/snas/setup -R
+
+TASK="check mount"
+read -t 5 -p "starting: $TASK" me
 
 # Wait until setup directory is mounted
 while [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; do
