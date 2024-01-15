@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo v0.3
+echo v0.4
 sleep 1
 
 mkdir ~/tmp -p
