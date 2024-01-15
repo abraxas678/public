@@ -141,4 +141,9 @@ while [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; do
 done
 
 # Source start2.sh script
+echo
+echo "STARTING START2.SH"
+echo
+sleep 3
+
 source /home/mnt/snas/setup/start2.sh
