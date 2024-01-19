@@ -1,4 +1,5 @@
 #!/bin/bash
+echo v0.2
 cd $HOME
 sudo apt install -y wget
 read -p "new hostname: >> " HOSTNAME
