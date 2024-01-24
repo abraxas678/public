@@ -44,22 +44,33 @@ git config --global user.name "abraxas678"
 # Change directory to home
 #cd $HOME
 
-TASK="tailscale"
-read -t 5 -p "starting: $TASK" me; echo
-curl -fsSL https://tailscale.com/install.sh | sh
-sudo tailscale up --ssh
+TASK="SETUP TAILSCALE"
+read -t 1 -p "starting: $TASK" me; echo
+$HOME/bin/count_down.sh 1
 
+RES=$(which tailscale)
+if [[ $? != "0" ]]; then
+curl -s 5 -fsSL https://tailscale.com/install.sh | sh
+fi
+echo
+echo
+sudo tailscale up --ssh
+echo
+echo
+SNAS_IP=$(tailscale status | grep snas | awk '{print $1}')
 # Get SNAS-IP from user
-TASK="SNAS_IP set?"
-read -t 5 -p "starting: $TASK" me; echo
+#TASK="SNAS_IP set?"
+#read -t 5 -p "starting: $TASK" me; echo
 
 COUNT=${#SNAS_IP}
 #echo COUNT $COUNT
 [[ "$COUNT" = "0" ]] && read -p "SNAS-IP: >> " SNAS_IP
+echo
 echo "SNAS_IP: $SNAS_IP"
-
-TASK="USER = abrax?"
-read -t 5 -p "starting: $TASK" me; echo
+echo
+read -t 2 me
+TASK="CHECK USER = abrax? "
+read -t 1 -p "starting: $TASK" me; echo
 
 # Check if user is not abrax, if not then switch to abrax
 if [[ $USER != *"abrax"* ]]; then
@@ -67,6 +78,7 @@ if [[ $USER != *"abrax"* ]]; then
   sudo adduser abrax
   sudo usermod -aG sudo abrax
   su abrax
+  exit
 fi
 
 # Check if head.json file exists, if not then create it
@@ -76,10 +88,10 @@ fi
 #  cat head.json
 #  read -t 10 me
 #fi
-
+echo
 # Update and upgrade system
 TASK="apt update && upgrade"
-read -t 5 -p "starting: $TASK" me; echo
+read -t 2 -p "starting: $TASK" me; echo
 
 ts=$(date +%s)
 if [[ -f ~/last_apt_update.txt ]]; then
@@ -94,10 +106,10 @@ echo $ts >~/last_apt_update.txt
 
 # Install ubuntu-desktop and xrdp
 #sudo apt install ubuntu-desktop xrdp -y
-
+echo
 TASK="nfs-common"
-read -t 5 -p "starting: $TASK" me; echo
-
+read -t 1 -p "starting: $TASK" me; echo
+echo
 # Install nfs-common
 sudo apt install nfs-common -y
 
@@ -120,9 +132,9 @@ sudo apt install nfs-common -y
 #if [[ $(twingate status) != *"online"* ]]; then
 #  timeout 10 /usr/bin/twingate-notifier console
 #fi
-
+echo
 TASK="MOUNT SNAS"
-read -t 5 -p "starting: $TASK" me; echo
+read -t 2 -p "starting: $TASK" me; echo
 
 
 # Create directories for SNAS setup
@@ -138,19 +150,19 @@ for dir in setup; do
     sudo chmod 777 /home/mnt/snas/$dir -R
   fi
 done
-
+echo
 TASK="get mount.sh"
-read -t 5 -p "starting: $TASK" me; echo
-
+read -t 2 -p "starting: $TASK" me; echo
+echo
 curl -L https://raw.githubusercontent.com/abraxas678/public/master/mount.sh -o mount.sh
-
+echo
 TASK="start mount.sh"
-read -t 5 -p "starting: $TASK" me; echo
+read -t 2 -p "starting: $TASK" me; echo
 
 source mount.sh
-
+echo
 TASK="mount dirs"
-read -t 5 -p "starting: $TASK" me; echo
+read -t 2 -p "starting: $TASK" me; echo
 
 # Mount directories if not already mounted
 #for dir in sync setup downloads2; do
@@ -164,9 +176,9 @@ done
 # Change ownership and permissions for setup directory
 #sudo chown $USER: -R /home/mnt/snas/setup
 #sudo chmod 777 /home/mnt/snas/setup -R
-
+echo
 TASK="check mount"
-read -t 5 -p "starting: $TASK" me; echo
+read -t 2 -p "starting: $TASK" me; echo
 
 # Wait until setup directory is mounted
 while [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; do
