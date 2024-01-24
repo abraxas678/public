@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo v0.7
+echo v0.8
 read -t 5 me
 
 mkdir ~/tmp -p
