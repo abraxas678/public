@@ -54,9 +54,13 @@ git config --global user.name "abraxas678"
 
 installme curl
 installme wget
+installme nfs-common
 
 RES=$(which tailscale)
 if [[ $? != "0" ]]; then
+  echo install tailscale
+  sleep 3
+  curl -s 5 -fsSL https://tailscale.com/install.sh 
   curl -s 5 -fsSL https://tailscale.com/install.sh | sh
 fi
 echo
