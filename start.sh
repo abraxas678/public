@@ -7,50 +7,57 @@ mkdir ~/tmp -p
 MYPWD=$PWD
 cd $HOME/tmp
 
-TASK="install basics"
-read -t 5 -p "starting: $TASK" me; echo
-sudo apt install curl git wget -y
+countdown() {
+    if [ -z "$1" ]; then
+        echo "No argument provided. Please provide a number to count down from."
+        exit 1
+    fi
+
+    tput civis
+    for ((i=$1; i>0; i--)); do
+        if (( i > $1*66/100 )); then
+            echo -ne "\033[0;32m$i\033[0m\r"
+        elif (( i > $1*33/100 )); then
+            echo -ne "\033[0;33m$i\033[0m\r"
+        else
+            echo -ne "\033[0;31m$i\033[0m\r"
+        fi
+        sleep 1
+        echo -ne "\033[0K"
+    done
+    echo -e "\033[0m"
+    tput cnorm
+}
+
+installme() {
+  echo
+  echo -e "\e[33mINSTALL: $1\e[0m"  
+  countdown 4
+  sudo apt install $1 -y
+}
+
+echo
+ts=$(date +%s)
+if [[ -f ~/last_apt_update.txt ]]; then
+  DIFF=$(($ts-$(cat ~/last_apt_update.txt)))
+  if [[ $DIFF -gt "600" ]]; then
+    sudo apt update && sudo apt upgrade -y
+  fi
+else
+  sudo apt update && sudo apt upgrade -y
+fi
+echo $ts >~/last_apt_update.txt
+
+installme git
 git config --global user.email "abraxas678@gmail.com"
 git config --global user.name "abraxas678"
 
-#which tmux >/dev/null 2>&1; [[ "$?" != "0" ]] && sudo apt update && sudo apt install tmux tmuxinator -y
-
-#curl -s -L https://raw.githubusercontent.com/abraxas678/public/master/start_TMUX.sh -o ~/tmp/start_TMUX.sh
-#chmod +x ~/tmp/start_TMUX.sh
-
-#curl -s -L https://raw.githubusercontent.com/abraxas678/public/master/.p10kmini.zsh -o ~/.p10kmini.zsh
-#curl -s -L https://raw.githubusercontent.com/abraxas678/public/master/setup.yml -o ~/tmp/setup.yml
-
-#echo "STATE1" >~/tmp/setup_status.txt
-#tmuxinator start -p $HOME/tmp/setup.yml
-#~/tmp/start_TMUX.sh
-
-
-#exit
-
-
-#!/bin/bash
-#            - tmux resize-pane -t 0 -y 2
-#tmux send-keys -t 0 'clear; echo -e "\033[1;34mSETUP NEW MACHINE\033[0m"' C-m
-#tmux send-keys -t 0 'start.sh'
-#            - tmux send-keys -t 1 'clear' C-m
-
-#tmux send-keys -t 1 'clear' C-m
-#tmux send-keys -t 0 'clear' C-m
-#tmux send-keys -t 0 'clear; echo -e "\033[1;34mSETUP NEW MACHINE\033[0m"' C-m
-#tmux send-keys -t 0 'start_TMUX.sh'
-
-#MYPWD=$PWD
-# Change directory to home
-#cd $HOME
-
-TASK="SETUP TAILSCALE"
-read -t 1 -p "starting: $TASK" me; echo
-$HOME/bin/count_down.sh 1
+installme curl
+installme wget
 
 RES=$(which tailscale)
 if [[ $? != "0" ]]; then
-curl -s 5 -fsSL https://tailscale.com/install.sh | sh
+  curl -s 5 -fsSL https://tailscale.com/install.sh | sh
 fi
 echo
 echo
@@ -58,12 +65,7 @@ sudo tailscale up --ssh
 echo
 echo
 SNAS_IP=$(tailscale status | grep snas | awk '{print $1}')
-# Get SNAS-IP from user
-#TASK="SNAS_IP set?"
-#read -t 5 -p "starting: $TASK" me; echo
-
 COUNT=${#SNAS_IP}
-#echo COUNT $COUNT
 [[ "$COUNT" = "0" ]] && read -p "SNAS-IP: >> " SNAS_IP
 echo
 echo "SNAS_IP: $SNAS_IP"
@@ -81,37 +83,9 @@ if [[ $USER != *"abrax"* ]]; then
   exit
 fi
 
-# Check if head.json file exists, if not then create it
-#if [[ ! -f ~/head.json ]]; then
-#  read -p "headless service key: >> " SKEY
-#  echo $SKEY >head.json
-#  cat head.json
-#  read -t 10 me
-#fi
-echo
-# Update and upgrade system
-TASK="apt update && upgrade"
-read -t 2 -p "starting: $TASK" me; echo
-
-ts=$(date +%s)
-if [[ -f ~/last_apt_update.txt ]]; then
-  DIFF=$(($ts-$(cat ~/last_apt_update.txt)))
-  if [[ $DIFF -gt "600" ]]; then
-    sudo apt update && sudo apt upgrade -y
-  fi
-else
-  sudo apt update && sudo apt upgrade -y
-fi
-echo $ts >~/last_apt_update.txt
 
 # Install ubuntu-desktop and xrdp
 #sudo apt install ubuntu-desktop xrdp -y
-echo
-TASK="nfs-common"
-read -t 1 -p "starting: $TASK" me; echo
-echo
-# Install nfs-common
-sudo apt install nfs-common -y
 
 # Install Twingate if not already installed
 #if [[ "$(command twingate 2>&1)" = *"command not found"* ]]; then
