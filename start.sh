@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo v0.93
+echo v0.94
 read -t 5 me
 
 mkdir ~/tmp -p
@@ -181,6 +181,14 @@ while [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; do
   echo "checking mount"
   sleep 1
 done
+
+mkdir /home/abrax/.config -p
+[[ ! -f /home/abrax/.config/sync.txt ]] && cp /home/mnt/snas/setup/sync.txt /home/abrax/.config/
+[[ ! -f /home/abrax/bin/sync.sh ]] && cp /home/mnt/snas/setup/sync.sh /home/abrax/bin/
+
+echo
+header1 sync.sh --skip
+/home/abrax/bin/sync.sh --skip
 
 # Source start2.sh script
 echo
