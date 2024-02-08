@@ -88,10 +88,7 @@ if [[ $? != "0" ]]; then
   curl -s 5 -fsSL https://tailscale.com/install.sh 
   curl -s 5 -fsSL https://tailscale.com/install.sh | sh
 fi
-echo
-echo
 sudo tailscale up --ssh
-echo
 echo
 TASK bashhub 
 export BH_URL="http://100.68.60.71:8081"
