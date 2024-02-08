@@ -32,7 +32,7 @@ countdown() {
 installme() {
   echo
   echo -e "\e[33mINSTALL: $1\e[0m"  
-  countdown 4
+  countdown 2
   sudo apt install $1 -y
 }
 
