@@ -37,11 +37,15 @@ TASK() {
   header1 $@
   countdown 1
 }
+
 installme() {
-  echo
-  echo -e "\e[33mINSTALL: $1\e[0m"  
-  countdown 2
-  sudo apt install $1 -y
+  which $@
+  if [[ $? != "0" ]]; then
+    echo
+    echo -e "\e[33mINSTALL: $1\e[0m"  
+    countdown 2
+    sudo apt install $1 -y
+  fi
 }
 
 TASK "CHECK: USER = abrax? "
