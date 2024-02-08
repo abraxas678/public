@@ -1,5 +1,6 @@
 #!/bin/bash
 clear
+cd $HOME
 echo v0.92
 read -t 5 me
 
