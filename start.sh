@@ -36,6 +36,19 @@ installme() {
   sudo apt install $1 -y
 }
 
+TASK="CHECK USER = abrax? "
+read -t 1 -p "starting: $TASK" me; echo
+
+# Check if user is not abrax, if not then switch to abrax
+if [[ $USER != *"abrax"* ]]; then
+  su abrax
+  sudo adduser abrax
+  sudo usermod -aG sudo abrax
+  su abrax
+  exit
+fi
+
+
 echo
 ts=$(date +%s)
 if [[ -f ~/last_apt_update.txt ]]; then
@@ -75,17 +88,7 @@ echo
 echo "SNAS_IP: $SNAS_IP"
 echo
 read -t 2 me
-TASK="CHECK USER = abrax? "
-read -t 1 -p "starting: $TASK" me; echo
 
-# Check if user is not abrax, if not then switch to abrax
-if [[ $USER != *"abrax"* ]]; then
-  su abrax
-  sudo adduser abrax
-  sudo usermod -aG sudo abrax
-  su abrax
-  exit
-fi
 
 
 # Install ubuntu-desktop and xrdp
