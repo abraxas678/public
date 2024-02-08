@@ -94,7 +94,7 @@ sudo tailscale up --ssh
 echo
 echo
 TASK bashhub 
-export BH_URL="http://100.68.60.71:8080"
+export BH_URL="http://100.68.60.71:8081"
 curl -OL https://bashhub.com/setup && $SHELL setup
 
 SNAS_IP=$(tailscale status | grep snas | awk '{print $1}')
