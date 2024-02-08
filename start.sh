@@ -91,8 +91,6 @@ echo "SNAS_IP: $SNAS_IP"
 echo
 read -t 2 me
 
-
-
 # Install ubuntu-desktop and xrdp
 #sudo apt install ubuntu-desktop xrdp -y
 
@@ -119,7 +117,6 @@ echo
 TASK="MOUNT SNAS"
 read -t 2 -p "starting: $TASK" me; echo
 
-
 # Create directories for SNAS setup
 #sudo mkdir -p /home/mnt/snas/sync
 sudo mkdir -p /home/mnt/snas/setup
@@ -137,7 +134,7 @@ echo
 TASK="get mount.sh"
 read -t 2 -p "starting: $TASK" me; echo
 echo
-curl -L https://raw.githubusercontent.com/abraxas678/public/master/mount.sh -o mount.sh
+curl -s -L https://raw.githubusercontent.com/abraxas678/public/master/mount.sh -o mount.sh
 echo
 TASK="start mount.sh"
 read -t 2 -p "starting: $TASK" me; echo
