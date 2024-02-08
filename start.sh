@@ -7,6 +7,10 @@ mkdir ~/tmp -p
 MYPWD=$PWD
 cd $HOME/tmp
 
+header1(){
+  echo -e "\e[33m$@\e[0m"  
+}
+
 countdown() {
     if [ -z "$1" ]; then
         echo "No argument provided. Please provide a number to count down from."
