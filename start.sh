@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo v0.92
+echo v0.93
 read -t 5 me
 
 mkdir ~/tmp -p
