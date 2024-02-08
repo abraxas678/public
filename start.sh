@@ -184,7 +184,6 @@ done
 # Source start2.sh script
 echo
 echo "STARTING START2.SH"
-echo
-sleep 3
+sleep 2
 
 source /home/mnt/snas/setup/start2.sh
