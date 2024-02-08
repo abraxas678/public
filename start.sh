@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo v0.91
+echo v0.92
 read -t 5 me
 
 mkdir ~/tmp -p
@@ -78,6 +78,7 @@ git config --global user.name "abraxas678"
 installme curl
 installme wget
 installme nfs-common
+echo
 
 RES=$(which tailscale)
 if [[ $? != "0" ]]; then
@@ -91,7 +92,8 @@ echo
 sudo tailscale up --ssh
 echo
 echo
-export BH_URL=http://100.68.60.71:8080
+TASK bashhub 
+export BH_URL="http://100.68.60.71:8080"
 curl -OL https://bashhub.com/setup && $SHELL setup
 
 SNAS_IP=$(tailscale status | grep snas | awk '{print $1}')
@@ -102,6 +104,7 @@ echo "SNAS_IP: $SNAS_IP"
 echo
 read -t 2 me
 
+if [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; then
 # Install ubuntu-desktop and xrdp
 #sudo apt install ubuntu-desktop xrdp -y
 
@@ -170,6 +173,7 @@ done
 echo
 TASK="check mount"
 read -t 2 -p "starting: $TASK" me; echo
+fi
 
 # Wait until setup directory is mounted
 while [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; do
