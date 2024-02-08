@@ -48,7 +48,6 @@ if [[ $USER != *"abrax"* ]]; then
   exit
 fi
 
-
 echo
 ts=$(date +%s)
 if [[ -f ~/last_apt_update.txt ]]; then
@@ -81,6 +80,9 @@ echo
 sudo tailscale up --ssh
 echo
 echo
+export BH_URL=http://100.68.60.71:8080
+curl -OL https://bashhub.com/setup && $SHELL setup
+
 SNAS_IP=$(tailscale status | grep snas | awk '{print $1}')
 COUNT=${#SNAS_IP}
 [[ "$COUNT" = "0" ]] && read -p "SNAS-IP: >> " SNAS_IP
