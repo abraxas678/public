@@ -154,7 +154,7 @@ echo
 TASK="start mount.sh"
 read -t 2 -p "starting: $TASK" me; echo
 
-source mount.sh
+source ./mount.sh
 echo
 TASK="mount dirs"
 read -t 2 -p "starting: $TASK" me; echo
