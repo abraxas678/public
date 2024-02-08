@@ -33,6 +33,10 @@ countdown() {
     tput cnorm
 }
 
+TASK() {
+  header1 $@
+  countdown 1
+}
 installme() {
   echo
   echo -e "\e[33mINSTALL: $1\e[0m"  
@@ -40,9 +44,7 @@ installme() {
   sudo apt install $1 -y
 }
 
-TASK="CHECK USER = abrax? "
-read -t 1 -p "starting: $TASK" me; echo
-
+TASK "CHECK: USER = abrax? "
 # Check if user is not abrax, if not then switch to abrax
 if [[ $USER != *"abrax"* ]]; then
   su abrax
@@ -52,6 +54,7 @@ if [[ $USER != *"abrax"* ]]; then
   exit
 fi
 
+TASK "check last update time"
 echo
 ts=$(date +%s)
 if [[ -f ~/last_apt_update.txt ]]; then
