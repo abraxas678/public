@@ -90,15 +90,18 @@ if [[ $? != "0" ]]; then
 fi
 sudo tailscale up --ssh
 echo
-TASK bashhub 
 export BH_URL="http://100.68.60.71:8081"
+which bh
+if [[ $? != "0" ]]; then
+TASK bashhub 
 curl -OL https://bashhub.com/setup && $SHELL setup
+fi
 
 SNAS_IP=$(tailscale status | grep snas | awk '{print $1}')
 COUNT=${#SNAS_IP}
 [[ "$COUNT" = "0" ]] && read -p "SNAS-IP: >> " SNAS_IP
 echo
-echo "SNAS_IP: $SNAS_IP"
+header2 "SNAS_IP: $SNAS_IP"
 echo
 read -t 2 me
 
