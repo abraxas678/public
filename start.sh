@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo v0.96
+echo v0.97
 read -t 5 me
 
 mkdir ~/tmp -p
@@ -10,6 +10,11 @@ cd $HOME/tmp
 
 header1(){
   echo -e "\e[33m$@\e[0m"  
+}
+
+header2(){
+  TEXT=$(echo "$@" | tr '[:lower:]' '[:upper:]')
+  echo -e "\e[94m$TEXT\e[0m"
 }
 
 countdown() {
@@ -60,7 +65,6 @@ if [[ $USER != *"abrax"* ]]; then
 fi
 
 TASK "check last update time"
-echo
 ts=$(date +%s)
 if [[ -f ~/last_apt_update.txt ]]; then
   DIFF=$(($ts-$(cat ~/last_apt_update.txt)))
