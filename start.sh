@@ -1,8 +1,8 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: v1.00
-read -t 5 me
+echo version: v1.01
+read -t 3 me
 
 mkdir ~/tmp -p
 MYPWD=$PWD
