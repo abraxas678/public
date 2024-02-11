@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo v0.97
+echo v0.98
 read -t 5 me
 
 mkdir ~/tmp -p
@@ -54,6 +54,7 @@ installme() {
   fi
 }
 
+echo user1
 TASK "CHECK: USER = abrax? "
 # Check if user is not abrax, if not then switch to abrax
 if [[ $USER != *"abrax"* ]]; then
@@ -63,6 +64,7 @@ if [[ $USER != *"abrax"* ]]; then
   su abrax
   exit
 fi
+echo user2
 
 TASK "check last update time"
 ts=$(date +%s)
