@@ -58,6 +58,7 @@ echo user1
 TASK "CHECK: USER = abrax? "
 # Check if user is not abrax, if not then switch to abrax
 if [[ $USER != *"abrax"* ]]; then
+  apt install -y sudo
   if [[ $USER = *"root"* ]]; then
     su abrax
     adduser abrax
