@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: v1.01
+echo version: v1.02
 read -t 3 me
 
 mkdir ~/tmp -p
@@ -101,7 +101,8 @@ if [[ $? != "0" ]]; then
   echo install tailscale
   #sleep 3
   curl -s 5 -fsSL https://tailscale.com/install.sh 
-  curl -s 5 -fsSL https://tailscale.com/install.sh | sh
+  #curl -s 5 -fsSL https://tailscale.com/install.sh | sh
+  curl -L https://tailscale.com/install.sh | sh
 fi
 sudo tailscale up --ssh
 echo
