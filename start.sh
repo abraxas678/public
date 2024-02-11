@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: v0.99
+echo version: v1.00
 read -t 5 me
 
 mkdir ~/tmp -p
@@ -99,7 +99,7 @@ echo
 RES=$(which tailscale)
 if [[ $? != "0" ]]; then
   echo install tailscale
-  sleep 3
+  #sleep 3
   curl -s 5 -fsSL https://tailscale.com/install.sh 
   curl -s 5 -fsSL https://tailscale.com/install.sh | sh
 fi
