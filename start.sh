@@ -105,6 +105,8 @@ if [[ $? != "0" ]]; then
   curl -L https://tailscale.com/install.sh | sh
 fi
 sudo tailscale up --ssh
+tailscale status
+[[ $? != "0" ]] && sudo tailscaled --tun=userspace-networking --socks5-server=localhost:1055 --outbound-http-proxy-listen=localhost:1055 &
 echo
 export BH_URL="http://100.68.60.71:8081"
 which bh
