@@ -106,6 +106,8 @@ if [[ $? != "0" ]]; then
 fi
 sudo tailscale up --ssh
 tailscale status
+sleep 4
+
 [[ $? != "0" ]] && sudo tailscaled --tun=userspace-networking --socks5-server=localhost:1055 --outbound-http-proxy-listen=localhost:1055 &
 echo
 export BH_URL="http://100.68.60.71:8081"
