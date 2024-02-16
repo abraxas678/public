@@ -2,7 +2,7 @@
 clear
 cd $HOME
 echo version: v1.05
-read -t 3 me
+read -t 2 me
 
 mkdir ~/tmp -p
 MYPWD=$PWD
@@ -49,7 +49,7 @@ installme() {
   if [[ $? != "0" ]]; then
     echo
     echo -e "\e[33mINSTALL: $1\e[0m"  
-    countdown 2
+    countdown 1
     sudo apt install $1 -y
   fi
 }
