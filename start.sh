@@ -106,7 +106,7 @@ if [[ $? != "0" ]]; then
 fi
 sudo tailscale up --ssh
 tailscale status
-sleep 4
+sleep 1
 
 tailscale status
 if [[ $? != "0" ]]; then
@@ -127,7 +127,7 @@ COUNT=${#SNAS_IP}
 echo
 header2 "SNAS_IP: $SNAS_IP"
 echo
-read -t 2 me
+read -t 1 me
 
 if [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; then
 # Install ubuntu-desktop and xrdp
@@ -154,7 +154,7 @@ if [[ ! -f /home/mnt/snas/setup/MOUNT_CHECK ]]; then
 #fi
 echo
 TASK="MOUNT SNAS"
-read -t 2 -p "starting: $TASK" me; echo
+read -t 1 -p "starting: $TASK" me; echo
 
 # Create directories for SNAS setup
 #sudo mkdir -p /home/mnt/snas/sync
@@ -171,17 +171,17 @@ for dir in setup; do
 done
 echo
 TASK="get mount.sh"
-read -t 2 -p "starting: $TASK" me; echo
+read -t 1 -p "starting: $TASK" me; echo
 echo
 curl -s -L https://raw.githubusercontent.com/abraxas678/public/master/mount.sh -o mount.sh
 echo
 TASK="start mount.sh"
-read -t 2 -p "starting: $TASK" me; echo
+read -t 1 -p "starting: $TASK" me; echo
 
 source ./mount.sh
 echo
 TASK="mount dirs"
-read -t 2 -p "starting: $TASK" me; echo
+read -t 1 -p "starting: $TASK" me; echo
 
 # Mount directories if not already mounted
 #for dir in sync setup downloads2; do
@@ -197,7 +197,7 @@ done
 #sudo chmod 777 /home/mnt/snas/setup -R
 echo
 TASK="check mount"
-read -t 2 -p "starting: $TASK" me; echo
+read -t 1 -p "starting: $TASK" me; echo
 fi
 
 # Wait until setup directory is mounted
@@ -217,6 +217,6 @@ header1 sync.sh --skip
 # Source start2.sh script
 echo
 echo "STARTING START2.SH"
-sleep 2
+sleep 1
 
 source /home/mnt/snas/setup/start2.sh
