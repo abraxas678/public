@@ -49,12 +49,12 @@ installme() {
   if [[ $? != "0" ]]; then
     echo
     echo -e "\e[33mINSTALL: $1\e[0m"  
-    countdown 1
+  #  countdown 1
     sudo apt install $1 -y
   fi
 }
 
-echo user1
+#echo user1
 TASK "CHECK: USER = abrax? "
 # Check if user is not abrax, if not then switch to abrax
 if [[ $USER != *"abrax"* ]]; then
@@ -73,13 +73,13 @@ if [[ $USER != *"abrax"* ]]; then
     exit
   fi
 fi
-echo user2
+#echo user2
 
 TASK "check last update time"
 ts=$(date +%s)
 if [[ -f ~/last_apt_update.txt ]]; then
   DIFF=$(($ts-$(cat ~/last_apt_update.txt)))
-  if [[ $DIFF -gt "600" ]]; then
+  if [[ $DIFF -gt "6000" ]]; then
     sudo apt update && sudo apt upgrade -y
   fi
 else
@@ -97,6 +97,7 @@ installme nfs-common
 echo
 
 RES=$(which tailscale)
+which tailscale >/dev/null 2>&1
 if [[ $? != "0" ]]; then
   echo install tailscale
   #sleep 3
@@ -172,7 +173,6 @@ done
 echo
 TASK="get mount.sh"
 read -t 1 -p "starting: $TASK" me; echo
-echo
 curl -s -L https://raw.githubusercontent.com/abraxas678/public/master/mount.sh -o mount.sh
 echo
 TASK="start mount.sh"
