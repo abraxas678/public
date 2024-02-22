@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: v1.08
+echo version: v1.09
 read -t 2 me
 
 mkdir ~/tmp -p
@@ -215,7 +215,7 @@ mkdir -p /home/abrax/.config/rclone/
 chmod +x /home/abrax/bin/*
 
 installme python3-pip
-sudo apt install -y python3-rich-cli
+pip3 install rich-cli
 export RCLONE_PASSWORD_COMMAND="ssh abraxas@snas cat /volume2/mutagen/.ssh/rclonepw.sh | bash"
 installme rclone
 echo
