@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: v1.06
+echo version: v1.07
 read -t 2 me
 
 mkdir ~/tmp -p
@@ -208,8 +208,14 @@ done
 
 mkdir /home/abrax/.config -p
 [[ ! -f /home/abrax/.config/sync.txt ]] && cp /home/mnt/snas/setup/sync.txt /home/abrax/.config/
+mkdir -p /home/abrax/.config/rclone/
+[[ ! -f /home/abrax/.config/rclone/rclone.conf ]] && cp /home/mnt/snas/setup/rclone.conf /home/abrax/.config/rclone/
 [[ ! -f /home/abrax/bin/sync.sh ]] && cp /home/mnt/snas/setup/sync.sh /home/abrax/bin/
+[[ ! -f /home/abrax/bin/age ]] && cp /home/mnt/snas/setup/age /home/abrax/bin/
+chmod +x /home/abrax/bin/*
 
+export RCLONE_PASSWORD_COMMAND="ssh abraxas@snas cat /volume2/mutagen/.ssh/rclonepw.sh | bash"
+installme rclone
 echo
 header1 sync.sh --skip
 /home/abrax/bin/sync.sh --skip
