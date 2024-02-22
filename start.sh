@@ -214,6 +214,8 @@ mkdir -p /home/abrax/.config/rclone/
 [[ ! -f /home/abrax/bin/age ]] && cp /home/mnt/snas/setup/age /home/abrax/bin/
 chmod +x /home/abrax/bin/*
 
+installme python3-pip
+sudo apt install -y python3-rich-cli
 export RCLONE_PASSWORD_COMMAND="ssh abraxas@snas cat /volume2/mutagen/.ssh/rclonepw.sh | bash"
 installme rclone
 echo
