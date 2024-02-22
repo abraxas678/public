@@ -215,12 +215,12 @@ mkdir -p /home/abrax/.config/rclone/
 chmod +x /home/abrax/bin/*
 
 installme python3-pip
-pip3 install rich-cli
+sudo apt install -y python3-rich_cli
 export RCLONE_PASSWORD_COMMAND="ssh abraxas@snas cat /volume2/mutagen/.ssh/rclonepw.sh | bash"
 installme rclone
 echo
 header1 sync.sh --skip
-/home/abrax/bin/sync.sh --skip
+/home/abrax/bin/sync.sh --skip --force
 
 # Source start2.sh script
 echo
