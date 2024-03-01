@@ -115,7 +115,7 @@ if [[ $? != "0" ]]; then
   sudo tailscale up --ssh
 fi
 echo
-export BH_URL="http://100.68.60.71:8081"
+export BH_URL="http://100.96.158.117:8081"
 which bh
 if [[ $? != "0" ]]; then
 TASK bashhub 
