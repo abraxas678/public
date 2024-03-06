@@ -4,6 +4,8 @@ cd $HOME
 echo version: NEWv0.1
 read -t 2 me
 
+read -p "RCLONE_CONFIG_PASS >> " MYPW
+export RCLONE_CONFIG_PASS="$MYPW"
 mkdir ~/tmp -p
 MYPWD=$PWD
 cd $HOME/tmp
@@ -240,7 +242,7 @@ rclone copy snas:mutagen/bin/header.sh ~/bin/ -P --progress-terminal-title --sta
 rclone copy snas:mutagen/.config/sync.txt ~/.config/ -P --progress-terminal-title --stats-one-line
 sudo chmod +x ~/bin/*
 #sudo apt install -y python3-rich_cli
-export RCLONE_PASSWORD_COMMAND="ssh abraxas@snas cat /volume2/mutagen/.ssh/rclonepw.sh | bash"
+#export RCLONE_PASSWORD_COMMAND="ssh abraxas@snas cat /volume2/mutagen/.ssh/rclonepw.sh | bash"
 echo
 header1 sync.sh --skip --force
 /home/abrax/bin/sync.sh --skip --force
