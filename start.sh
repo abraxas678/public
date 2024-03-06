@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: NEWv0.1
+echo version: NEWv0.2
 read -t 2 me
 
 read -p "RCLONE_CONFIG_PASS >> " MYPW
