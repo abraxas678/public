@@ -230,15 +230,18 @@ mkdir -p /home/abrax/.config/rclone/
 chmod +x /home/abrax/bin/*
 sudo -v ; curl https://rclone.org/install.sh | sudo bash -s beta
 echo
+if [[ ! -f /home/abrax/.config/rclone/rclone.conf ]]; then
 header1 'execute   curl -s -T ~/.config/rclone/rclone.conf "pcopy.dmw.zone/rc?t=3m"'
 echo
 read -p BUTTON me
 curl -L pcopy.dmw.zone/rc -o ~/.config/rclone/rclone.conf
 COUNT=$(rclone listremotes | wc -l)
 [[ $COUNT > "100" ]] && echo "rclone.conf: OK"
+fi
 rclone copy snas:mutagen/.ssh ~/.ssh -P --progress-terminal-title --stats-one-line
 rclone copy snas:mutagen/bin/sync.sh ~/bin/ -P --progress-terminal-title --stats-one-line
 rclone copy snas:mutagen/bin/header.sh ~/bin/ -P --progress-terminal-title --stats-one-line
+rclone copy snas:mutagen/bin/uni.sh ~/bin/ -P --progress-terminal-title --stats-one-line
 rclone copy snas:mutagen/.config/sync.txt ~/.config/ -P --progress-terminal-title --stats-one-line
 sudo chmod +x ~/bin/*
 #sudo apt install -y python3-rich_cli
