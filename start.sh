@@ -131,10 +131,14 @@ if [[ $? != "0" ]]; then
 fi
 echo
 export BH_URL="http://$( tailscale status | grep ionos0  | awk '{print $1}'):8081"
+mybh="y"
 which bh
 if [[ $? != "0" ]]; then
+read -t 10 -p BASHHUB? mybh
+if [[ $mybh = "y" ]]; then
 TASK bashhub 
 curl -OL https://bashhub.com/setup && $SHELL setup
+fi
 fi
 
 SNAS_IP=$(tailscale status | grep snas | awk '{print $1}')
