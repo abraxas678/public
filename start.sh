@@ -134,7 +134,7 @@ export BH_URL="http://$( tailscale status | grep ionos0  | awk '{print $1}'):808
 mybh="y"
 which bh
 if [[ $? != "0" ]]; then
-read -t 10 -p BASHHUB? mybh
+read -t 10 -n 1 -p "BASHHUB? >> " mybh
 if [[ $mybh = "y" ]]; then
 TASK bashhub 
 curl -OL https://bashhub.com/setup && $SHELL setup
