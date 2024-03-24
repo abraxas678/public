@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: NEWv0.8
+echo version: NEWv0.9
 read -t 2 me
 echo
 check_dns() {
@@ -266,7 +266,12 @@ mkdir -p /home/abrax/.config/rclone/
 [[ ! -f /home/abrax/.config/rclone/rclone.conf ]] && cp /home/mnt/snas/setup/rclone.conf /home/abrax/.config/rclone/
 [[ ! -f /home/abrax/bin/sync.sh ]] && cp /home/mnt/snas/setup/sync.sh /home/abrax/bin/
 [[ ! -f /home/abrax/bin/age ]] && cp /home/mnt/snas/setup/age /home/abrax/bin/
+echo
+echo chmod +x bin
+
 chmod +x /home/abrax/bin/*
+echo
+echo rclone beta
 sudo -v ; curl https://rclone.org/install.sh | sudo bash -s beta
 echo
 if [[ ! -f /home/abrax/.config/rclone/rclone.conf ]]; then
