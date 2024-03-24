@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: NEWv0.6
+echo version: NEWv0.7
 read -t 2 me
 echo
 check_dns() {
@@ -161,7 +161,9 @@ curl -OL https://bashhub.com/setup && $SHELL setup
 fi
 fi
 
+echo
 read -p "MOUNT VIA [s]nas OR [n]extcloud? >> " -n 1 MYMOUNT
+echo
 if [[ $MYMOUNT = "s" ]]; then
 SNAS_IP=$(tailscale status | grep snas | awk '{print $1}')
 COUNT=${#SNAS_IP}
@@ -237,6 +239,8 @@ done
 #sudo chown $USER: -R /home/mnt/snas/setup
 #sudo chmod 777 /home/mnt/snas/setup -R
 else
+  echo DOWNLOAD mount_nextcloud.sh
+  sleep 1
   wget https://raw.githubusercontent.com/abraxas678/public/master/mount_nextcloud.sh
   chmod +x mount_nextcloud.sh
   ./mount_nextcloud.sh
