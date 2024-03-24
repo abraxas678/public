@@ -161,6 +161,8 @@ curl -OL https://bashhub.com/setup && $SHELL setup
 fi
 fi
 
+read -p "MOUNT VIA [s]nas OR [n]extcloud? >> " -n 1 MYMOUNT
+if [[ $MYMOUNT = "s" ]]; then
 SNAS_IP=$(tailscale status | grep snas | awk '{print $1}')
 COUNT=${#SNAS_IP}
 [[ "$COUNT" = "0" ]] && read -p "SNAS-IP: >> " SNAS_IP
@@ -234,6 +236,15 @@ done
 # Change ownership and permissions for setup directory
 #sudo chown $USER: -R /home/mnt/snas/setup
 #sudo chmod 777 /home/mnt/snas/setup -R
+else
+  wget https://raw.githubusercontent.com/abraxas678/public/master/mount_nextcloud.sh
+  chmod +x mount_nextcloud.sh
+  ./mount_nextcloud.sh
+  sudo mkdir -p /home/mnt/snas/setup
+  sudo chown abrax: -R /home/mnt/snas/setup
+  ln -s /home/mnt/nextcloud/EXT_StorageBox/setup /home/mnt/snas/setup
+fi
+
 echo
 TASK="check mount"
 read -t 1 -p "starting: $TASK" me; echo
