@@ -1,10 +1,10 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: NEWv0.3
+echo version: NEWv0.4
 read -t 2 me
 echo
-check_dns {
+check_dns() {
 echo check_dns
 cd $HOME
 ping -c 1 google.com >/dev/null && echo "Online" || echo "Offline"
@@ -19,6 +19,7 @@ if [[ $ONL = "0" ]]; then
 ping -c 1 google.com >/dev/null && echo "Online" || echo "Offline"
 fi
 }
+
 check_dns
 
 read -p "RCLONE_CONFIG_PASS >> " MYPW
