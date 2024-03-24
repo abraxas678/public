@@ -1,14 +1,14 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: NEWv0.7
+echo version: NEWv0.8
 read -t 2 me
 echo
 check_dns() {
 echo check_dns
 cd $HOME
-ping -c 1 google.com >/dev/null && echo "Online" || echo "Offline"
-ping -c 1 google.com >/dev/null && ONL=1 || ONL=0
+sudo ping  -c 1 google.com >/dev/null && echo "Online" || echo "Offline"
+sudo ping  -c 1 google.com >/dev/null && ONL=1 || ONL=0
 if [[ $ONL = "0" ]]; then
   CHECK=$(cat /etc/resolv.conf)
   if [[ $CHECK != *"8.8.8.8"* ]] ; then
@@ -17,7 +17,7 @@ echo donix
 #    cat /etc/resolv.conf>>~/resolv.conf
 #    sudo mv ~/resolv.conf /etc/
   fi
-ping -c 1 google.com >/dev/null && echo "Online" || echo "Offline"
+sudo ping  -c 1 google.com >/dev/null && echo "Online" || echo "Offline"
 fi
 }
 
