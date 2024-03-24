@@ -1,4 +1,6 @@
 #!/bin/bash
+echo mount_nextcloud.sh
+sleep 1
 
 # Step 1: Install davfs2
 sudo apt-get update
