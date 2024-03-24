@@ -1,9 +1,10 @@
 #!/bin/bash
 clear
 cd $HOME
-echo version: NEWv0.2
+echo version: NEWv0.3
 read -t 2 me
 echo
+check_dns {
 echo check_dns
 cd $HOME
 ping -c 1 google.com >/dev/null && echo "Online" || echo "Offline"
@@ -17,6 +18,8 @@ if [[ $ONL = "0" ]]; then
   fi
 ping -c 1 google.com >/dev/null && echo "Online" || echo "Offline"
 fi
+}
+check_dns
 
 read -p "RCLONE_CONFIG_PASS >> " MYPW
 export RCLONE_CONFIG_PASS="$MYPW"
@@ -144,6 +147,7 @@ if [[ $? != "0" ]]; then
   sudo tailscale up --ssh
 fi
 echo
+check_dns
 export BH_URL="http://$( tailscale status | grep ionos0  | awk '{print $1}'):8081"
 mybh="y"
 which bh
