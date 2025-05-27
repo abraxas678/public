@@ -36,3 +36,8 @@ done
 if ! id "$STANDARD_USER" &>/dev/null; then
     $MYSUDO adduser $STANDARD_USER && $MYSUDO usermod -aG sudo $STANDARD_USER && passwd $STANDARD_USER
 fi
+
+tailscale status >/dev/null 2>&1
+RES="$?"
+[[ $RES != 0 ]] && curl -fsSL https://tailscale.com/install.sh | sh
+
