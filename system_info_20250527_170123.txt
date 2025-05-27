@@ -1,0 +1,106 @@
+=== SYSTEM IDENTIFICATION ===
+Hostname: nuc
+Kernel Version: 6.8.0-60-generic
+Architecture: x86_64
+OS: Ubuntu 24.04.2 LTS
+LSB Info: Ubuntu 24.04.2 LTS
+
+=== USER CONTEXT ===
+Current User: abrax
+Sudo Access: Yes
+Groups: abrax adm cdrom sudo dip plugdev lpadmin libvirt ollama sambashare docker
+
+=== HARDWARE INFO ===
+CPU: 13th Gen Intel(R) Core(TM) i5-1340P
+Memory: 30Gi Total
+Disk: 912G Total, 433G Used
+
+=== SOFTWARE ENVIRONMENT ===
+Bash Version: 5.2.21(1)-release
+Python3: 3.12.3
+Pip3: 24.0
+PATH: /home/abrax/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/home/abrax/.local/bin:/home/abrax/anaconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/abrax/.cache/zsh4humans/v5/fzf/bin
+
+=== INSTALLED SOFTWARE ===
+Debian Packages: 3838
+
+=== NETWORK INFO ===
+IP Addresses: 192.168.178.23 100.95.254.127 172.18.0.1 172.21.0.1 172.19.0.1 172.20.0.1 172.17.0.1 192.168.122.1 172.22.0.1 2a02:8109:929a:9d00:ecbf:8d84:5134:fdfd 2a02:8109:929a:9d00:3760:355d:62c7:a799 fd7a:115c:a1e0::bd01:fe7f 
+DNS Servers: 127.0.0.53 
+ip a output:
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: enp86s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 48:21:0b:56:ed:55 brd ff:ff:ff:ff:ff:ff
+3: enx00e04c335da0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 00:e0:4c:33:5d:a0 brd ff:ff:ff:ff:ff:ff
+4: wlo1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 58:1c:f8:fa:ac:35 brd ff:ff:ff:ff:ff:ff
+    altname wlp0s20f3
+    inet 192.168.178.23/24 brd 192.168.178.255 scope global dynamic noprefixroute wlo1
+       valid_lft 861669sec preferred_lft 861669sec
+    inet6 2a02:8109:929a:9d00:ecbf:8d84:5134:fdfd/64 scope global temporary dynamic 
+       valid_lft 6941sec preferred_lft 3341sec
+    inet6 2a02:8109:929a:9d00:3760:355d:62c7:a799/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 6941sec preferred_lft 3341sec
+    inet6 fe80::5b3f:88dc:1744:7044/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+5: tailscale0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1280 qdisc fq_codel state UNKNOWN group default qlen 500
+    link/none 
+    inet 100.95.254.127/32 scope global tailscale0
+       valid_lft forever preferred_lft forever
+    inet6 fd7a:115c:a1e0::bd01:fe7f/128 scope global 
+       valid_lft forever preferred_lft forever
+    inet6 fe80::3af0:2d02:c153:98f7/64 scope link stable-privacy 
+       valid_lft forever preferred_lft forever
+6: br-21f3f4164a93: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether fe:da:4f:43:37:3e brd ff:ff:ff:ff:ff:ff
+    inet 172.18.0.1/16 brd 172.18.255.255 scope global br-21f3f4164a93
+       valid_lft forever preferred_lft forever
+7: br-48b71db5e424: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 6e:29:60:8a:fd:a2 brd ff:ff:ff:ff:ff:ff
+    inet 172.21.0.1/16 brd 172.21.255.255 scope global br-48b71db5e424
+       valid_lft forever preferred_lft forever
+    inet6 fe80::6c29:60ff:fe8a:fda2/64 scope link 
+       valid_lft forever preferred_lft forever
+8: br-48e5c45b76af: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 26:a2:b4:30:e3:88 brd ff:ff:ff:ff:ff:ff
+    inet 172.19.0.1/16 brd 172.19.255.255 scope global br-48e5c45b76af
+       valid_lft forever preferred_lft forever
+9: br-57058a46c51a: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    link/ether ae:4c:9e:d9:b1:33 brd ff:ff:ff:ff:ff:ff
+    inet 172.20.0.1/16 brd 172.20.255.255 scope global br-57058a46c51a
+       valid_lft forever preferred_lft forever
+    inet6 fe80::ac4c:9eff:fed9:b133/64 scope link 
+       valid_lft forever preferred_lft forever
+10: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 26:96:60:98:03:36 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::2496:60ff:fe98:336/64 scope link 
+       valid_lft forever preferred_lft forever
+13: vethf5110b1@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-57058a46c51a state UP group default 
+    link/ether da:1a:91:25:cd:3f brd ff:ff:ff:ff:ff:ff link-netnsid 2
+    inet6 fe80::d81a:91ff:fe25:cd3f/64 scope link 
+       valid_lft forever preferred_lft forever
+14: vethfa603db@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-57058a46c51a state UP group default 
+    link/ether 0e:d3:b1:6f:45:a7 brd ff:ff:ff:ff:ff:ff link-netnsid 3
+    inet6 fe80::cd3:b1ff:fe6f:45a7/64 scope link 
+       valid_lft forever preferred_lft forever
+15: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether 52:54:00:e8:10:0d brd ff:ff:ff:ff:ff:ff
+    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+       valid_lft forever preferred_lft forever
+20: br-c6bd35b4ce16: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether f2:09:6b:59:45:08 brd ff:ff:ff:ff:ff:ff
+    inet 172.22.0.1/16 brd 172.22.255.255 scope global br-c6bd35b4ce16
+       valid_lft forever preferred_lft forever
+
+=== SECURITY CONTEXT ===
+SELinux Status: Not installed
+AppArmor Status: apparmor module is loaded.
+Not installed
