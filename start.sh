@@ -41,3 +41,14 @@ tailscale status >/dev/null 2>&1
 RES="$?"
 [[ $RES != 0 ]] && curl -fsSL https://tailscale.com/install.sh | sh
 
+sudo tailscale up -ssh
+
+echo
+sudo apt update
+sudo apt install -y ansible restic
+read -p "GITHUB_USERNAME: > " GITHUB_USERNAME
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
+echo
+echo ATUIN
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+echo
