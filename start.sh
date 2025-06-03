@@ -52,3 +52,5 @@ echo
 echo ATUIN
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 echo
+sudo apt install -y libc6 libgcc-s1 libgl1 libgtk-3-0 libstdc++6 libx11-6
+
