@@ -1,4 +1,5 @@
 #!/bin/bash
+#echo 'abrax ALL=(ALL) NOPASSWD:ALL' | sudo EDITOR='tee -a' visudo
 if [ "$(id -u)" = 0 ]; then
     MYSUDO=""
 else
