@@ -1,10 +1,35 @@
 #!/bin/bash
-
+echo
 # Check if script is running with root privileges
 if [ "$(id -u)" = 0 ]; then
     MYSUDO=""
 else
     MYSUDO="sudo"
+fi
+
+[[ ! -f /media/abrax/Ventoy/bws.tar.age ]] && echo "/media/abrax/Ventoy/bws.tar.age missing" && exit
+mkdir -p ~/.ssh
+cp /media/abrax/Ventoy/bws.tar.age ~/.ssh/
+# Check if age is installed, install if not
+if ! command -v age &> /dev/null; then
+    echo -e "\033[32mInstalling age...\033[0m"
+    $MYSUDO apt update
+    $MYSUDO apt install -y age
+else
+    echo -e "\033[33mage is already installed\033[0m"
+fi
+
+# Check if bws.keyx already exists
+if [[ ! -f ~/.ssh/bws.keyx ]]; then
+    # Decrypt bws.tar.age
+    read -p "age priv key: >" me
+    echo $me >~/.ssh/akey.txt
+    age -d -i ~/.ssh/key.txt ~/.ssh/bws.tar.age > ~/.ssh/bws.tar
+
+    # Extract bws.tar
+    tar -xvf ~/.ssh/bws.tar -C ~/.ssh/
+else
+    echo -e "\033[33mbws.keyx already exists, skipping decryption and extraction\033[0m"
 fi
 
 # Display system update menu
