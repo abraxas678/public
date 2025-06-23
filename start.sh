@@ -12,15 +12,21 @@ mkdir -p ~/.ssh
 mkdir -p ~/.config/chezmoi
 cp /media/abrax/KopiaBackup/chez.tar.cpt ~/.config/chezmoi/
 if ! command -v ccrypt &> /dev/null; then
-$MYSUDO apt update && $MYSUDO apt install ccrypt -y
+   echo -e "\033[32mInstalling ccrypt...\033[0m"
+   $MYSUDO apt update && $MYSUDO apt install ccrypt -y
 fi
 if ! command -v fd &> /dev/null; then
-$MYSUDO apt update && $MYSUDO apt install fd-find -y
+   echo -e "\033[32mInstalling fd-find...\033[0m"
+   $MYSUDO apt update && $MYSUDO apt install fd-find -y
 fi
 cd ~/.config/chezmoi
+if [[ ! -f ~/.ssh/bws.dat ]]; then
 ccrypt -d chez.tar.cpt
 tar xf chez.tar
+fi
 mv $(fdfind bws.dat) $HOME/.ssh/
+mv $(fdfind chezmoi.toml) $HOME/.config/chezmoi/
+mv $(fdfind key.txt) $HOME/.config/chezmoi/
 
 # Check if age is installed, install if not
 if ! command -v age &> /dev/null; then
@@ -30,6 +36,14 @@ if ! command -v age &> /dev/null; then
 else
     echo -e "\033[33mage is already installed\033[0m"
 fi
+if ! command -v gh &> /dev/null; then
+    echo -e "\033[32mInstalling gh...\033[0m"
+    $MYSUDO apt update
+    $MYSUDO apt install -y gh
+else
+    echo -e "\033[33mgh is already installed\033[0m"
+fi
+
 
 # Check if bws.keyx already exists
 #if [[ ! -f ~/.ssh/bws.keyx ]]; then
@@ -100,17 +114,30 @@ install_thorium() {
     command -v thorium-browser
     RES=$?
     if [[ $RES != 0 ]]; then
+        cd ~/Downloads
         open https://github.com/Alex313031/thorium/releases
-        read -p "URL for thorium: > " THURL
-        wget $THURL
-        sudo apt install -y ./$(basename $THURL)
+        
+        x=1
+        while [[ $x = 1 ]]; do
+             [[ $(ls ~/Downloads/thorium-browser*.deb | wc -l) -gt 0 ]] && x=0 || sleep 1
+        done
+#        read -p "URL for thorium: > " THURL
+#        wget $THURL
+#        sudo apt install -y ./$(basename $THURL)
+        $MYSUDO apt update
+        $MYSUDO apt install -y ./$(ls thorium*deb | head -n 1)
         echo
-        echo "THORIUM DONE"
+        echo "THORIUM DONE - close after BW & PROTON setup"
         thorium-browser
         sleep 5
     fi
 }
 install_thorium
+echo
+echo "CLOSE FIREFOX AND PRESS ENTER"
+echo
+read me
+sudo apt purge firefox -y
 
 # Install additional packages
 install_packages() {
@@ -119,8 +146,11 @@ install_packages() {
     sudo apt install -y ansible restic copyq rclone
 }
 install_packages
+sudo restic self-update
 
 # Wait for chezmoid configuration files
+gh auth login
+
 wait_for_chezmoid() {
     x=1
     while [[ $x = 1 ]]; do
@@ -149,7 +179,7 @@ echo
 
 # Install Atuin
 install_atuin() {
-    command -v atuin
+    command -v atuin 
     RES=$?
     if [[ $RES != 0 ]]; then
         echo ATUIN
