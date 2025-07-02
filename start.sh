@@ -67,6 +67,9 @@ instme fd-find
 instme gron
 instme fzf
 instgit binwiederhier pcopy
+echo
+pcopy join --force https://p.xxxyzzz.xyz
+echo
 
 cd ~/.config/chezmoi
 #if [[ ! -f ~/.ssh/bws.dat ]]; then
@@ -209,23 +212,24 @@ wait_for_chezmoid() {
     x=1
     while [[ $x = 1 ]]; do
         echo "waiting for toml & key in ~/Downloads"
-        if [[ ! -f ~/.config/chezmoi/chezmoi.toml ]] || [[ ! -f ~/.config/chezmoi/key.txt ]]; then
+  #      if [[ ! -f ~/.config/chezmoi/chezmoi.toml ]] || [[ ! -f ~/.config/chezmoi/key.txt ]]; then
             if [[ -f ~/Downloads/chezmoi.toml ]]; then
                 if [[ -f ~/Downloads/key.txt ]]; then
+                    sleep 5
                     mv ~/Downloads/chezmoi.toml ~/.config/chezmoi/
                     mv ~/Downloads/key.txt ~/.config/chezmoi/
                     chmod 500 ~/.config/chezmoi/chezmoi.toml
                     x=0
                 fi
             fi
-        else
-            x=0
-        fi
+   #     else
+   #         x=0
+   #     fi
         sleep 3
         tput cuu1; tput ed
     done
 }
-[[ ! -f $HOME/.config/chezmoi/chezmoi.toml ]] && wait_for_chezmoid
+[[ $(cat $HOME/.config/chezmoi/chezmoi.toml | wc -l) -lt 3 ]] && wait_for_chezmoid
 
 if [[ ! -f $HOME/.ssh/GITHUB_USERNAME ]]; then
   # Initialize Chezmoi
