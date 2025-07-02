@@ -1,50 +1,44 @@
 #!/bin/bash
 echo
+MYPWD=$PWD
 # Check if script is running with root privileges
 if [ "$(id -u)" = 0 ]; then
     MYSUDO=""
 else
     MYSUDO="sudo"
 fi
+instme() {
+   if ! command -v $1 &> /dev/null; then
+      echo -e "\033[32mInstalling $1...\033[0m"
+      $MYSUDO apt update && $MYSUDO apt install $1 -y
+   else
+       echo -e "\033[33mgh is already installed\033[0m"
+   fi
 
-[[ ! -f /media/abrax/KopiaBackup/chez.tar.cpt ]] && echo "/media/abrax/KopiaBackup/chez.tar.cpt" && exit
+}
+
+#[[ ! -f /media/abrax/KopiaBackup/chez.tar.cpt ]] && echo "/media/abrax/KopiaBackup/chez.tar.cpt" && exit
 mkdir -p ~/.ssh
 mkdir -p ~/.config/chezmoi
-cp /media/abrax/KopiaBackup/chez.tar.cpt ~/.config/chezmoi/
-sleep 3
-if ! command -v ccrypt &> /dev/null; then
-   echo -e "\033[32mInstalling ccrypt...\033[0m"
-   $MYSUDO apt update && $MYSUDO apt install ccrypt -y
-fi
-if ! command -v fd &> /dev/null; then
-   echo -e "\033[32mInstalling fd-find...\033[0m"
-   $MYSUDO apt update && $MYSUDO apt install fd-find -y
-fi
+#cp /media/abrax/KopiaBackup/chez.tar.cpt ~/.config/chezmoi/
+#sleep 3
+
+#instme ccrypt
+instme fd
+
 cd ~/.config/chezmoi
-if [[ ! -f ~/.ssh/bws.dat ]]; then
-ccrypt -d chez.tar.cpt
-tar xf chez.tar
-fi
+#if [[ ! -f ~/.ssh/bws.dat ]]; then
+#ccrypt -d chez.tar.cpt
+#tar xf chez.tar
+#fi
+cd
 mv $(fdfind bws.dat) $HOME/.ssh/
 mv $(fdfind chezmoi.toml) $HOME/.config/chezmoi/
 mv $(fdfind key.txt) $HOME/.config/chezmoi/
 
 # Check if age is installed, install if not
-if ! command -v age &> /dev/null; then
-    echo -e "\033[32mInstalling age...\033[0m"
-    $MYSUDO apt update
-    $MYSUDO apt install -y age
-else
-    echo -e "\033[33mage is already installed\033[0m"
-fi
-if ! command -v gh &> /dev/null; then
-    echo -e "\033[32mInstalling gh...\033[0m"
-    $MYSUDO apt update
-    $MYSUDO apt install -y gh
-else
-    echo -e "\033[33mgh is already installed\033[0m"
-fi
-
+instme age
+instme gh
 
 # Check if bws.keyx already exists
 #if [[ ! -f ~/.ssh/bws.keyx ]]; then
@@ -60,8 +54,10 @@ fi
 #fi
 
 # Display system update menu
+
 echo -e "\n\033[1;34m=== System Update ===\033[0m"
-read -n 1 -p "Do you want to update and upgrade the system? (Y/n): " update_choice
+update_choice=n
+read -t 5 -n 1 -p "Do you want to update and upgrade the system? (Y/n): " update_choice
 echo
 
 if [[ $update_choice =~ ^[Nn]$ ]]; then
@@ -82,17 +78,21 @@ else
     update_system
 fi
 
+if [[ ! -f $HOME/.ssh/STANDARD_USER ]]; then
 # Create new user account
 while true; do
     echo -e "\n\033[1;34m=== User Account Creation ===\033[0m"
     read -p "Please enter the desired username: " STANDARD_USER
     if [[ $STANDARD_USER =~ ^[a-z_][a-z0-9_-]*$ ]]; then
+        echo $STNDARD_USER >$HOME/.ssh/STANDARD_USER
         break
     else
         echo "Invalid username. Use only lowercase letters, numbers, underscores and hyphens. Must start with a letter or underscore."
     fi
 done
-
+else
+  STANDARD_USER=$(cat $HOME/.ssh/STANDARD_USER)
+fi
 # Create and configure new user account
 configure_user() {
     if ! id "$STANDARD_USER" &>/dev/null; then
@@ -115,23 +115,26 @@ install_thorium() {
     command -v thorium-browser
     RES=$?
     if [[ $RES != 0 ]]; then
-        cd ~/Downloads
-        echo open https://github.com/Alex313031/thorium/releases
-        open https://github.com/Alex313031/thorium/releases
+         wget $($MYPWD/github_latest_release_url.sh Alex313031 thorium)
+         $MYSUDO apt update
+#         $MYSUDO apt install *thorium*deb
+#        cd ~/Downloads
+#        echo open https://github.com/Alex313031/thorium/releases
+#        open https://github.com/Alex313031/thorium/releases
         
-        x=1
-        while [[ $x = 1 ]]; do
-             [[ $(ls ~/Downloads/thorium-browser*.deb | wc -l) -gt 0 ]] && x=0 || sleep 1
-        done
+#        x=1
+#        while [[ $x = 1 ]]; do
+#             [[ $(ls ~/Downloads/thorium-browser*.deb | wc -l) -gt 0 ]] && x=0 || sleep 1
+#        done
 #        read -p "URL for thorium: > " THURL
 #        wget $THURL
 #        sudo apt install -y ./$(basename $THURL)
-        $MYSUDO apt update
+#        $MYSUDO apt update
         $MYSUDO apt install -y ./$(ls thorium*deb | head -n 1)
         echo
         echo "THORIUM DONE - close after BW & PROTON setup"
-        thorium-browser
         sleep 5
+        thorium-browser
     fi
 }
 install_thorium
@@ -140,12 +143,16 @@ echo "CLOSE FIREFOX AND PRESS ENTER"
 echo
 read me
 sudo apt purge firefox -y
+sudo apt purge firefox-esr -y
 
 # Install additional packages
 install_packages() {
     echo
-    sudo apt update
-    sudo apt install -y ansible restic copyq rclone
+#    sudo apt update
+    instme ansible 
+    instme restic 
+    instme copyq 
+    instme rclone
 }
 install_packages
 sudo restic self-update
