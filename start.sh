@@ -281,6 +281,26 @@ if [[ ! -d /media/abrax/KopiaBackup ]]; then
   done
 fi
 
+sleep 3
 echo
 echo "Mounting restic"
+sleep 3 
 restic mount /mnt/restic &
+
+x=1
+echo
+echo WAITING FOR MOUNT
+echo
+while [[ $x = 1 ]]; do
+  [[ -d /mnt/restic/snapshots/latest ]] && x=0 || sleep 1
+done
+
+sleep 5
+echo
+echo cd /mnt/restic/snapshots/latest/home/abrax/.config
+cd /mnt/restic/snapshots/latest/home/abrax/.config
+echo
+echo rclone copy /mnt/restic/snapshots/latest/home/abrax/.config ~/.config --ignore-existing -PL --fast-list
+echo
+read -p "B to start" me
+rclone copy /mnt/restic/snapshots/latest/home/abrax/.config ~/.config --ignore-existing -PL --fast-list
