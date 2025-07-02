@@ -1,0 +1,5 @@
+github.com
+  ✓ Logged in to github.com as abraxas678 (/home/abrax/.config/gh/hosts.yml)
+  ✓ Git operations for github.com configured to use ssh protocol.
+  ✓ Token: gho_************************************
+  ✓ Token scopes: admin:public_key, gist, read:org, repo

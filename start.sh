@@ -7,6 +7,24 @@ if [ "$(id -u)" = 0 ]; then
 else
     MYSUDO="sudo"
 fi
+$MYSUDO cp bin/chezmoi /usr/bin/chezmoi
+
+mkdir -p /home/abrax/tmp/
+### BWS
+if ! command -v bws >/dev/null 2>&1; then
+    wget https://github.com/bitwarden/sdk/releases/download/bws-v1.0.0/bws-x86_64-unknown-linux-gnu-1.0.0.zip
+    unzip bws-x86_64-unknown-linux-gnu-1.0.0.zip
+    sudo mv bws /usr/bin/
+    rm -f bws-x86_64-unknown-linux-gnu-1.0.0.zip
+    bws config server-base https://vault.bitwarden.eu
+#    sudo apt install zellij -y
+fi
+
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/*
+
+#sudo /home/abrax/bin/setup_automount_nfs.sh
+
 instme() {
    if ! command -v $1 &> /dev/null; then
       echo -e "\033[32mInstalling $1...\033[0m"
@@ -57,8 +75,8 @@ cd ~/.config/chezmoi
 #fi
 cd
 mv $(fdfind bws.dat) $HOME/.ssh/
-mv $(fdfind chezmoi.toml) $HOME/.config/chezmoi/
-mv $(fdfind key.txt) $HOME/.config/chezmoi/
+#mv $(fdfind chezmoi.toml) $HOME/.config/chezmoi/
+#mv $(fdfind key.txt) $HOME/.config/chezmoi/
 
 # Check if age is installed, install if not
 instme age
@@ -182,7 +200,10 @@ install_packages
 sudo restic self-update
 
 # Wait for chezmoid configuration files
-gh auth login
+gh auth status >del 2>&1
+COUNT=$(cat del | grep -v grep | grep "Logged in to github.com as abraxas678" | wc -l)
+rm del
+[[ $COUNT = 0 ]] && gh auth login
 
 wait_for_chezmoid() {
     x=1
@@ -193,6 +214,7 @@ wait_for_chezmoid() {
                 if [[ -f ~/Downloads/key.txt ]]; then
                     mv ~/Downloads/chezmoi.toml ~/.config/chezmoi/
                     mv ~/Downloads/key.txt ~/.config/chezmoi/
+                    chmod 500 ~/.config/chezmoi/chezmoi.toml
                     x=0
                 fi
             fi
@@ -203,11 +225,16 @@ wait_for_chezmoid() {
         tput cuu1; tput ed
     done
 }
-wait_for_chezmoid
+[[ ! -f $HOME/.config/chezmoi/chezmoi.toml ]] && wait_for_chezmoid
 
-# Initialize Chezmoi
-read -p "GITHUB_USERNAME: > " GITHUB_USERNAME
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --ssh --apply $GITHUB_USERNAME
+if [[ ! -f $HOME/.ssh/GITHUB_USERNAME ]]; then
+  # Initialize Chezmoi
+  read -p "GITHUB_USERNAME: > " GITHUB_USERNAME
+  echo $GITHUB_USERNAME >$HOME/.ssh/GITHUB_USERNAME
+else
+  GITHUB_USERNAME=$(cat $HOME/.ssh/GITHUB_USERNAME)
+fi
+  sh -c "$(curl -fsLS get.chezmoi.io)" -- init --ssh --apply $GITHUB_USERNAME
 echo
 
 # Install Atuin
@@ -223,3 +250,24 @@ install_atuin
 
 # Setup Tailscale
 tailscale_setup
+
+#To clear the state of run_onchange_ scripts, run:
+chezmoi state delete-bucket --bucket=entryState
+#To clear the state of run_once_ scripts, run:
+chezmoi state delete-bucket --bucket=scriptState
+
+chezmoi update -k
+
+mmkdir.sh /mnt/restic
+if [[ ! -d /media/abrax/KopiaBackup ]]; then
+  echo "connect KopiaBackup "
+  x=1
+  echo "waiting for KopiaBackup"
+  while [[ $x = 1 ]]; do
+     [[ -d /media/abrax/KopiaBackup ]] && x=0 || sleep 1
+  done
+fi
+
+echo
+echo "Mounting restic"
+restic mount /mnt/restic &
