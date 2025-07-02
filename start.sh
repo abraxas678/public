@@ -68,10 +68,12 @@ mkdir -p ~/.config/chezmoi
 instme fd-find
 instme gron
 instme fzf
-instgit binwiederhier pcopy
-echo
-pcopy join --force https://p.xxxyzzz.xyz
-echo
+if [[ ! -f /usr/bin/pcopy ]]; then
+  instgit binwiederhier pcopy
+  echo
+  pcopy join --force https://p.xxxyzzz.xyz
+  echo
+fi
 
 cd ~/.config/chezmoi
 #if [[ ! -f ~/.ssh/bws.dat ]]; then
@@ -302,14 +304,17 @@ cd /mnt/restic/snapshots/latest/home/abrax/.config
 echo
 echo rclone copy /mnt/restic/snapshots/latest/home/abrax/.config ~/.config --ignore-existing -PL --fast-list
 echo
-read -p "B to start" me
-rclone copy /mnt/restic/snapshots/latest/home/abrax/.config ~/.config --ignore-existing -PL --fast-list
+unset me
+read -p "[y] to start" me
+[[ $me = y ]] && rclone copy /mnt/restic/snapshots/latest/home/abrax/.config ~/.config --ignore-existing -PL --fast-list
 echo
 echo atuin sync --force
-read -p "B to start" me
-atuin sync --force
+unset me
+read -p "[y] to start" me
+[[ $me = y ]] && atuin sync --force
 echo
 echo rclone copy /mnt/restic/snapshots/latest/home/abrax/bin ~/bin --ignore-existing -PL --fast-list
-read -p "B to start" me
-rclone copy /mnt/restic/snapshots/latest/home/abrax/bin ~/bin --ignore-existing -PL --fast-list
+unset me
+read -p "[y] to start" me
+[[ $me = y ]] && rclone copy /mnt/restic/snapshots/latest/home/abrax/bin ~/bin --ignore-existing -PL --fast-list
 echo
