@@ -7,6 +7,9 @@ if [ "$(id -u)" = 0 ]; then
 else
     MYSUDO="sudo"
 fi
+
+sudo grep -q '^%sudo ALL=(ALL:ALL) NOPASSWD:ALL' /etc/sudoers || echo '%sudo ALL=(ALL:ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers
+
 mkdir $HOME/bin -p
 $MYSUDO cp bin/chezmoi /usr/bin/chezmoi
 $MYSUDO cp chezmoi.sh $HOME/bin/
