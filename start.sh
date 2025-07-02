@@ -7,7 +7,9 @@ if [ "$(id -u)" = 0 ]; then
 else
     MYSUDO="sudo"
 fi
+mkdir $HOME/bin -p
 $MYSUDO cp bin/chezmoi /usr/bin/chezmoi
+$MYSUDO cp chezmoi.sh $HOME/bin/
 
 mkdir -p /home/abrax/tmp/
 ### BWS
@@ -255,13 +257,20 @@ install_atuin
 # Setup Tailscale
 tailscale_setup
 
+echo
+echo CHEZMOI CLEAR
+echo
 #To clear the state of run_onchange_ scripts, run:
 chezmoi state delete-bucket --bucket=entryState
 #To clear the state of run_once_ scripts, run:
 chezmoi state delete-bucket --bucket=scriptState
 
-chezmoi update -k
 
+chezmoi.sh update -k
+
+echo
+echo RESTIC MOUNT
+echo
 mmkdir.sh /mnt/restic
 if [[ ! -d /media/abrax/KopiaBackup ]]; then
   echo "connect KopiaBackup "
