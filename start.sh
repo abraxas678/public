@@ -304,3 +304,12 @@ echo rclone copy /mnt/restic/snapshots/latest/home/abrax/.config ~/.config --ign
 echo
 read -p "B to start" me
 rclone copy /mnt/restic/snapshots/latest/home/abrax/.config ~/.config --ignore-existing -PL --fast-list
+echo
+echo atuin sync --force
+read -p "B to start" me
+atuin sync --force
+echo
+echo rclone copy /mnt/restic/snapshots/latest/home/abrax/bin ~/bin --ignore-existing -PL --fast-list
+read -p "B to start" me
+rclone copy /mnt/restic/snapshots/latest/home/abrax/bin ~/bin --ignore-existing -PL --fast-list
+echo
