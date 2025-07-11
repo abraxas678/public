@@ -262,6 +262,7 @@ install_atuin
 # Setup Tailscale
 tailscale_setup
 
+sudo cp $HOME/tmp/public/bin/chezmoi /usr/bin/
 echo
 echo CHEZMOI CLEAR
 echo
@@ -270,13 +271,12 @@ chezmoi state delete-bucket --bucket=entryState
 #To clear the state of run_once_ scripts, run:
 chezmoi state delete-bucket --bucket=scriptState
 
-
 chezmoi.sh update -k
 
 echo
 echo RESTIC MOUNT
 echo
-mmkdir.sh /mnt/restic
+$HOME/bin/mmkdir.sh -p /mnt/restic
 if [[ ! -d /media/abrax/KopiaBackup ]]; then
   echo "connect KopiaBackup "
   x=1
@@ -290,7 +290,7 @@ sleep 3
 echo
 echo "Mounting restic"
 sleep 3 
-restic mount /mnt/restic &
+bws run -- restic mount /mnt/restic -r /media/abrax/KopiaBackup/restic_repos/restic13 &
 
 x=1
 echo
