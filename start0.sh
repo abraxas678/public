@@ -36,7 +36,11 @@ if [ ${#missing_packages[@]} -gt 0 ]; then
     $MYROOT apt-get install -y "${missing_packages[@]}"
 fi
 
-./github_latest_release_url_install.sh Alex313031 thorium
+THORIUM="$(command -v thorium-browser || true)"
+if [ -z "$THORIUM" ]; then
+  ./github_latest_release_url_install.sh Alex313031 thorium
+fi
+
 
 TAILSCALE="$(command -v tailscale || true)"
 if [ -z "$TAILSCALE" ]; then
