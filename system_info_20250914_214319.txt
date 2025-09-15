@@ -1,0 +1,33 @@
+=== SYSTEM IDENTIFICATION ===
+Hostname: nuc
+Kernel Version: 6.1.0-39-amd64
+Architecture: x86_64
+OS: Debian GNU/Linux 12 (bookworm)
+LSB Info: Debian GNU/Linux 12 (bookworm)
+
+=== USER CONTEXT ===
+Current User: abrax
+Sudo Access: Yes
+Groups: abrax lp dialout cdrom floppy sudo audio dip video plugdev users netdev lpadmin vboxsf scanner sambashare docker
+
+=== HARDWARE INFO ===
+CPU: 13th Gen Intel(R) Core(TM) i5-1340P
+Memory: 30Gi Total
+Disk: 915G Total, 508G Used
+
+=== SOFTWARE ENVIRONMENT ===
+Bash Version: 5.2.15(1)-release
+Python3: 3.11.2
+Pip3: 23.0.1
+PATH: /home/abrax/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/home/abrax/.local/bin:/home/abrax/bin:/home/abrax/.cargo/bin:/home/abrax/miniforge3/bin:/home/abrax/miniconda3/bin:/usr/bin:/home/abrax/.local/bin:/home/abrax/anaconda3/bin:/home/abrax/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/snap/bin:/home/abrax/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/bin
+
+=== INSTALLED SOFTWARE ===
+Debian Packages: 3650
+
+=== NETWORK INFO ===
+IP Addresses: 10.10.101.2 10.10.100.239 100.113.47.21 172.20.0.1 172.18.0.1 172.23.0.1 172.21.0.1 172.22.0.1 172.17.0.1 172.19.0.1 fdb1:89e7:af0e:6436:22b0:ec92:181f:8813 fd7a:115c:a1e0::2332:2f15 
+DNS Servers: 100.100.100.100 
+
+=== SECURITY CONTEXT ===
+SELinux Status: Not installed
+AppArmor Status: Not installed
