@@ -58,6 +58,11 @@ else
     log_info "Tailscale not found - it will be installed above"
 fi
 
+mkdir -p $HOME/tmp
+cd $HOME/tmp
+mkdir ./starttmp && mount -t tmpfs -o size=500m tmpfs ./starttmp
+cd starttmp
+
 wget http://hetzner15.donkey-elevator.ts.net:3000/start.sh
 chmod +x start.sh
 ./start.sh
