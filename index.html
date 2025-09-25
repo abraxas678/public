@@ -1,0 +1,39 @@
+<!DOCTYPE html><html data-version="1.8.0.75322" data-build="9/12/2025"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="./favicon.ico"><title></title><meta name="renderer" content="webkit"><meta name="force-rendering" content="webkit"><script src="./browser-compatible/browser-compatible.js?t=1"></script><script>browserCompatible.ban(['ie'], './browser-compatible/browser-compatible.html');
+        browserCompatible.blockMobile('./browser-compatible/check-mobile.html');
+        const DEV_MODE = window.DEV_MODE =false</script><script>const isClient = window.isClient =false
+    const UGOSLauncher=window.UGOSLauncher=true;
+    if (!window.mainProcess) {
+      let parentWin = parent.window
+      window.mainProcess = parentWin.mainProcess||{}
+      window.process = parentWin.process
+      window.Buffer = parentWin.Buffer
+      window.global = parentWin.global
+    }
+
+    function loadScript(src) {
+      const script = document.createElement('script');
+
+      script.src = src;
+
+      const scriptPromise = new Promise((resolve, reject) => {
+        script.onload = () => {
+          resolve();
+        };
+
+        script.onerror = (error) => {
+          reject(error);
+        };
+      });
+
+      document.body.appendChild(script);
+
+      return scriptPromise;
+    }
+    console.log(
+      '%c Launcher_75322(85944886)#1030 %c 9/12/2025 %c release_20250917 ',
+      "padding: 2px 1px; border-radius: 3px 0 0 3px; color: #fff; background: #606060; font-weight: bold;",
+      "padding: 2px 1px; color: #fff; background: #42c02e; font-weight: bold;",
+      "padding: 2px 1px; border-radius: 0 3px 3px 0; color: #fff; background: #38F; font-weight: bold;",
+    );
+      window.ugosAppId = 'com.ugreen.desktop';
+      window.ugosAppVersion = '75322';</script><link href="./static/css/ugos-framework.1b665bfc.css" rel="stylesheet"><link href="./static/css/app.230d997c.css" rel="stylesheet"></head><body data-versionnumber="75322"><noscript><strong>We're sorry but com.ugreen.desktop doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script src="./static/js/ugos-framework.824b52f7.js"></script><script src="./static/js/ugos-task-center-core.8b8792d5.js"></script><script src="./static/js/app.a321b603.js"></script></body></html>
