@@ -1,5 +1,6 @@
 #! /bin/bash
-gum spin --title=update... --spinner=dot -- sudo apt update >/dev/null 
+#gum spin --title=update... --spinner=dot -- sudo apt update >/dev/null 
+sudo apt update >/dev/null 
 #2>&1
 sudo apt install -y gron xsel fzf -y
 curl -sL "https://api.github.com/repos/$1/$2/releases/latest" | gron | grep browser_download_url | grep deb | sed "s/.*browser_download_url = //" | sed "s/^\"//" | sed "s/\";$//" | grep -v arm >res
