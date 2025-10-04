@@ -36,7 +36,7 @@ cd $HOME/tmp
 mkdir ./starttmp -p;  mount -t tmpfs -o size=500m tmpfs ./starttmp
 cd starttmp
 
-sudo apt install restic rclone xsel keepassxc git gh curl wget unzip -y
+sudo apt install restic rclone ansible xsel keepassxc git gh curl wget unzip -y
 
 rm start.sh
 [[ ! -f start.sh ]] && wget https://s.xxxyzzz.xyz/start.sh
