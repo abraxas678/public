@@ -36,6 +36,8 @@ cd $HOME/tmp
 mkdir ./starttmp -p;  mount -t tmpfs -o size=500m tmpfs ./starttmp
 cd starttmp
 
+sudo apt install restic rclone xsel -y
+
 rm start.sh
 [[ ! -f start.sh ]] && wget https://s.xxxyzzz.xyz/start.sh
 chmod +x start.sh
