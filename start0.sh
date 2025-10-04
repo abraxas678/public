@@ -5,7 +5,14 @@ else
     MYROOT="sudo"
 fi
 
-source $MYPWD/header.source
+#source $MYPWD/header.source
+
+echo
+echo "sudo visudo"
+echo
+echo "abrax ALL=(ALL:ALL) NOPASSWD: ALL"
+echo
+read -p "--" -t 60 me
 
 # Install prerequisites only if missing
 missing_packages=()

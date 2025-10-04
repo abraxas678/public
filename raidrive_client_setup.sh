@@ -103,19 +103,19 @@ fi
 
 echo
 echo "----------------------------------------------"
-print_step "Tailscale Installation & Setup"
+#print_step "Tailscale Installation & Setup"
 echo "----------------------------------------------"
 
-print_step "Checking if Tailscale is installed..."
-if ! command -v tailscale &> /dev/null; then
-    print_sub_step "Tailscale not found. Installing..."
-    curl -fsSL https://tailscale.com/install.sh | sudo sh
-else
-    print_sub_step "Tailscale is already installed."
-fi
+#print_step "Checking if Tailscale is installed..."
+#if ! command -v tailscale &> /dev/null; then
+#    print_sub_step "Tailscale not found. Installing..."
+#    curl -fsSL https://tailscale.com/install.sh | sudo sh
+#else
+#    print_sub_step "Tailscale is already installed."
+#fi
 
-print_step "Bringing Tailscale up..."
-$MYSUDO tailscale up --ssh --accept-routes --accept-risk=lose-ssh
+#print_step "Bringing Tailscale up..."
+#$MYSUDO tailscale up --ssh --accept-routes --accept-risk=lose-ssh
 
 echo
 echo "----------------------------------------------"
