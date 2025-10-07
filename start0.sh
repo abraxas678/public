@@ -1,4 +1,5 @@
 #!/bin/bash
+MYPWD=$PWD
 if [ "$(id -u)" = 0 ]; then
     MYROOT=""
 else
@@ -13,6 +14,8 @@ echo
 echo "abrax ALL=(ALL:ALL) NOPASSWD: ALL"
 echo
 read -p "--" -t 60 me
+
+$MYPWD/github_latest_release_url_install.sh Eugeny tabby
 
 # Install prerequisites only if missing
 missing_packages=()
