@@ -9,6 +9,10 @@ fi
 #source $MYPWD/header.source
 
 echo
+echo "sudo ubuntu-drivers install"
+echo "for the newest driver"
+echo
+echo
 echo "sudo visudo"
 echo
 echo "abrax ALL=(ALL:ALL) NOPASSWD: ALL"
