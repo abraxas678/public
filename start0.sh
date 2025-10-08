@@ -45,6 +45,9 @@ cd starttmp
 
 sudo apt install restic rclone ansible xsel keepassxc git gh zsh curl wget unzip -y
 
+command -v espanso;
+[[ $? != 0 ]] && ./espanso_setup_x11.sh
+
 rm start.sh
 [[ ! -f start.sh ]] && wget https://s.xxxyzzz.xyz/start.sh
 chmod +x start.sh
