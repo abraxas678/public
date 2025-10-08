@@ -45,10 +45,12 @@ cd starttmp
 
 sudo apt install restic rclone ansible xsel keepassxc git gh zsh curl wget unzip -y
 
-command -v espanso;
-[[ $? != 0 ]] && ./espanso_setup_x11.sh
+#command -v espanso;
+#[[ $? != 0 ]] && ./espanso_setup_x11.sh
 
 rm start.sh
 [[ ! -f start.sh ]] && wget https://s.xxxyzzz.xyz/start.sh
 chmod +x start.sh
+echo "starting sudo start.sh"
+read -p B -t 10 me
 sudo ./start.sh
