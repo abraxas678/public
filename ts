@@ -1,7 +1,6 @@
-Error: changing settings via 'tailscale up' requires mentioning all
-non-default flags. To proceed, either re-run your command with --reset or
-use the command below to explicitly mention the current value of
-all non-default settings:
 
-	tailscale up --ssh --accept-routes
+To authenticate, visit:
 
+	https://login.tailscale.com/a/1b99fb5a0114fd
+
+context canceled
